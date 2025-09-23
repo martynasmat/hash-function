@@ -1,10 +1,24 @@
 #include <iostream>
+#include <iomanip>
+#include <cstdint>
+#include <vector>
 
 using namespace std;
 
 struct Cli {
     string fileName;
     string literalString;
+};
+
+struct Hasher {
+    static vector<uint8_t> pad_input(const vector<uint8_t>& in) {
+        vector<uint8_t> p = in;
+        uint8_t len = p.size();
+        uint8_t padZeros = 15 - (len % 16);
+        p.insert(p.end(), padZeros, 0x00);
+        p.push_back(static_cast<uint8_t>(len % 256));
+        return p;
+    }
 };
 
 bool parse_cli_args(int argc, char** argv, Cli& cli) {
@@ -39,16 +53,19 @@ bool parse_cli_args(int argc, char** argv, Cli& cli) {
 
 int main(int argc, char** argv) {
     Cli cli;
+    vector<uint8_t> inputBytes;
 
     if (!parse_cli_args(argc, argv, cli)) {
         return 1;
     }
 
     if (!cli.fileName.empty()) {
-        cout << cli.fileName;
     } else {
-        cout << cli.literalString;
+        inputBytes.assign(cli.literalString.begin(), cli.literalString.end());
     }
 
+    vector<uint8_t> h = Hasher::pad_input(inputBytes);
+    for (auto b : h) cout << hex << setw(2) << setfill('0') << (int)b;
+    cout << "\n";
     return 0;
 }
