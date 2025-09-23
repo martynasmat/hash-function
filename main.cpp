@@ -28,6 +28,14 @@ struct Hasher {
         return (n>>c) | (n<<( (-c)&mask ));
     }
 
+    static void mix(uint8_t out[8], const uint8_t a[8], uint8_t b[8]) {
+        for (int i = 0; i < 8; i++) {
+            uint8_t s = 0x17;
+            s ^= a[i];
+            out[i] = rotl((rotr(uint8_t(uint8_t(s) + uint8_t(b[i+5])), 5) + uint8_t(a[i])), 2);
+        }
+    }
+
     static vector<uint8_t> pad_input(const vector<uint8_t>& in) {
         vector<uint8_t> p = in;
         uint8_t len = p.size();
@@ -48,7 +56,7 @@ struct Hasher {
         // hash 8 bytes at a time until whole input hashed
         for (size_t i = 0; i < msg.size(); i += 8) {
             uint8_t next[8];
-            // TODO: operation(acc, next, msg[i])
+            mix(next, acc, &msg[i]);
             memcpy(acc, next, sizeof(acc));
         }
 
