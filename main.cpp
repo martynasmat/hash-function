@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <cstdint>
 #include <vector>
+#include <array>
 
 using namespace std;
 
@@ -18,6 +19,26 @@ struct Hasher {
         p.insert(p.end(), padZeros, 0x00);
         p.push_back(static_cast<uint8_t>(len % 256));
         return p;
+    }
+
+    static array<uint8_t,8> hash(const vector<uint8_t>& input) {
+        static const uint8_t first[] = { 0x20,0x03,0x01,0x08,0x20,0x03,0x01,0x08 };
+
+        vector<uint8_t> msg = pad_input(input);
+
+        uint8_t acc[8];
+        memcpy(acc, first, sizeof(acc));
+
+        // hash 8 bytes at a time until whole input hashed
+        for (size_t i = 0; i < msg.size(); i += 8) {
+            uint8_t next[8];
+            // TODO: operation(acc, next, msg[i])
+            memcpy(acc, next, sizeof(acc));
+        }
+
+        array<uint8_t,8> out{};
+        memcpy(&out, acc, 8);
+        return out;
     }
 };
 
@@ -64,7 +85,7 @@ int main(int argc, char** argv) {
         inputBytes.assign(cli.literalString.begin(), cli.literalString.end());
     }
 
-    vector<uint8_t> h = Hasher::pad_input(inputBytes);
+    array<uint8_t, 8> h = Hasher::hash(inputBytes);
     for (auto b : h) cout << hex << setw(2) << setfill('0') << (int)b;
     cout << "\n";
     return 0;
