@@ -1,0 +1,9 @@
+# ninja log v5
+0	559	7803532037303709	CMakeFiles/hash.dir/main.cpp.obj	5d004c8adfcf9bdb
+562	840	7803532040089136	hash.exe	87d35c49893e1cb1
+3	427	7803534803266347	CMakeFiles/hash.dir/main.cpp.obj	5d004c8adfcf9bdb
+427	550	7803534804471126	hash.exe	87d35c49893e1cb1
+3	408	7803536203236804	CMakeFiles/hash.dir/main.cpp.obj	5d004c8adfcf9bdb
+408	523	7803536204378831	hash.exe	87d35c49893e1cb1
+3	410	7803536395065597	CMakeFiles/hash.dir/main.cpp.obj	5d004c8adfcf9bdb
+410	520	7803536396152242	hash.exe	87d35c49893e1cb1
