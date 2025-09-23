@@ -31,7 +31,7 @@ struct Hasher {
     static void mix(uint8_t out[8], const uint8_t a[8], uint8_t b[8]) {
         for (int i = 0; i < 8; i++) {
             uint8_t s = 0x17;
-            s ^= a[i];
+            s ^= a[i+2];
             out[i] = rotl((rotr(uint8_t(uint8_t(s) + uint8_t(b[i+5])), 5) + uint8_t(a[i])), 2);
         }
     }
