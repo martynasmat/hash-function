@@ -12,6 +12,22 @@ struct Cli {
 };
 
 struct Hasher {
+    // Rotate functions
+    // https://blog.regehr.org/archives/1063
+    static inline uint8_t rotl(uint8_t n, unsigned int c)
+    {
+        const unsigned int mask = (CHAR_BIT*sizeof(n) - 1);
+        c &= mask;
+        return (n<<c) | (n>>( (-c)&mask ));
+    }
+
+    static inline uint8_t rotr(uint8_t n, unsigned int c)
+    {
+        const unsigned int mask = (CHAR_BIT*sizeof(n) - 1);
+        c &= mask;
+        return (n>>c) | (n<<( (-c)&mask ));
+    }
+
     static vector<uint8_t> pad_input(const vector<uint8_t>& in) {
         vector<uint8_t> p = in;
         uint8_t len = p.size();
