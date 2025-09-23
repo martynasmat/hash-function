@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <vector>
 #include <array>
+#include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -45,6 +47,17 @@ struct Hasher {
         return p;
     }
 
+    static vector<uint8_t> rearrange(const vector<uint8_t>& in) {
+        // rearranges characters using the mt19937 generator
+        // uses length of padded input XOR 20250901 as seed
+        vector<uint8_t> rearranged = in;
+        size_t l = rearranged.size();
+        l ^= 20250923;
+        mt19937 rng(l);
+        shuffle(rearranged.begin(), rearranged.end(), rng);
+        return rearranged;
+    }
+
     static array<uint8_t,8> hash(const vector<uint8_t>& input) {
         static const uint8_t first[] = { 0x20,0x03,0x01,0x08,0x20,0x03,0x01,0x08 };
 
@@ -52,6 +65,9 @@ struct Hasher {
 
         uint8_t acc[8];
         memcpy(acc, first, sizeof(acc));
+
+        // apply permutation to padded input before mixing
+        msg = rearrange(msg);
 
         // hash 8 bytes at a time until whole input hashed
         for (size_t i = 0; i < msg.size(); i += 8) {
