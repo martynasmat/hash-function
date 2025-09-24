@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <vector>
 #include <array>
 #include <random>
@@ -42,6 +43,13 @@ bool parse_cli_args(int argc, char** argv, Cli& cli) {
     return true;
 }
 
+static string read_file(const string& path){
+    ifstream in(path, ios::binary);
+    ostringstream ss;
+    ss<<in.rdbuf();
+    return ss.str();
+}
+
 int main(int argc, char** argv) {
     Cli cli;
     vector<uint8_t> inputBytes;
@@ -51,6 +59,8 @@ int main(int argc, char** argv) {
     }
 
     if (!cli.fileName.empty()) {
+        string data = read_file(cli.fileName);
+        inputBytes.assign(data.begin(), data.end());
     } else {
         inputBytes.assign(cli.literalString.begin(), cli.literalString.end());
     }
