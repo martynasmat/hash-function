@@ -16,7 +16,7 @@ struct Cli {
 };
 
 struct Hasher {
-    // Rotate functions
+    // Rotate function
     // https://blog.regehr.org/archives/1063
     static inline uint8_t rotl(uint8_t n, unsigned int c)
     {
@@ -25,18 +25,9 @@ struct Hasher {
         return (n<<c) | (n>>( (-c)&mask ));
     }
 
-    static inline uint8_t rotr(uint8_t n, unsigned int c)
-    {
-        const unsigned int mask = (CHAR_BIT*sizeof(n) - 1);
-        c &= mask;
-        return (n>>c) | (n<<( (-c)&mask ));
-    }
-
-    static void mix(uint8_t out[8], const uint8_t a[8], uint8_t b[8]) {
+    static void mix(uint8_t out[8], const uint8_t a[8], const uint8_t b[8]) {
         for (int i = 0; i < 8; i++) {
-            uint8_t s = 0x17;
-            s ^= a[(i+2)&7];
-            out[i] = rotl((rotr(uint8_t(uint8_t(s) + uint8_t(b[(i+5) % 7])), 5) + uint8_t(a[i])), 2);
+            out[i] = rotl(uint8_t(a[i] ^ b[(i + 4) % 8]), 3);
         }
     }
 
@@ -66,14 +57,13 @@ struct Hasher {
         vector<uint8_t> msg = pad_input(input);
 
         uint8_t acc[8];
+        uint8_t next[8];
         memcpy(acc, first, sizeof(acc));
 
         // apply permutation to padded input before mixing
         msg = rearrange(msg, input);
 
-        // hash 8 bytes at a time until whole input hashed
         for (size_t i = 0; i < msg.size(); i += 8) {
-            uint8_t next[8];
             mix(next, acc, &msg[i]);
             memcpy(acc, next, sizeof(acc));
         }
