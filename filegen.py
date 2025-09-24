@@ -39,5 +39,8 @@ with open(f".\\test_files\\avalanche.txt", "x") as f:
     for _ in range(0, 100000):
         data_1 = [random.choice(string.ascii_letters + string.digits) for _ in range(0, 25)]
         data_2 = data_1.copy()
-        data_2[random.randint(0, len(data_1) - 1)] = random.choice(string.ascii_letters + string.digits)
+        pos = random.randint(0, len(data_1) - 1)
+        while data_2[pos] == data_1[pos]:
+            rand_char = random.choice(string.ascii_letters + string.digits)
+            data_2[pos] = rand_char
         f.write("".join(data_1) + ' ' + "".join(data_2) + '\n')

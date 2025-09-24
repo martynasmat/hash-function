@@ -29,6 +29,13 @@ double hamming_distance_bits(const std::array<uint8_t,8>& a, const std::array<ui
     return 100.0 * double(d) / 64.0;
 }
 
+double hamming_distance_hex(const std::array<uint8_t,8>& a, const std::array<uint8_t,8>& b) {
+    std::string ha = to_hex(a), hb = to_hex(b);
+    int d = 0;
+    for (int i = 0; i < 16; ++i) if (ha[i] != hb[i]) ++d;
+    return 100.0 * double(d) / 16.0;
+}
+
 string read_text(const string& path){
     ifstream in(path, ios::binary);
     ostringstream ss; ss<<in.rdbuf(); return ss.str();
@@ -114,7 +121,7 @@ int main(){
 
     // 4) avalanche effect
     cout << "\n# lavinos efektas\n";
-    double sum = 0, min=INT_MAX, max=INT_MIN;
+    double sum_bits = 0, sum_hex = 0, min_bits=INT_MAX, max_bits=INT_MIN, min_hex=INT_MAX, max_hex=INT_MIN;
     int pairs=0;
     ifstream in(DIR+"avalanche.txt");
     string line,a,b;
@@ -124,11 +131,29 @@ int main(){
         vector<uint8_t> v1(a.begin(),a.end()), v2(b.begin(),b.end());
         auto h1=Hasher::hash(v1), h2=Hasher::hash(v2);
         double dist = hamming_distance_bits(h1, h2);
-        sum += dist;
-        if(dist < min) min = dist;
-        if(dist > max) max = dist;
-    }
-    cout << "  hamming distance / bits: avg_percentage="<<sum / double(pairs)<<"%  min="<<min<<"%  max="<<max<<"%\n";
 
+        if(dist == 0) cout << a << "COLL" << b << "\n\n\n\n";
+
+        sum_bits += dist;
+        if(dist < min_bits) min_bits = dist;
+        if(dist > max_bits) max_bits = dist;
+
+        dist = hamming_distance_hex(h1, h2);
+        sum_hex += dist;
+        if(dist < min_hex) min_hex = dist;
+        if(dist > max_hex) max_hex = dist;
+    }
+    cout << "  hamming distance / bits: avg_percentage="<<sum_bits / double(pairs)<<"%  min="<<min_bits<<"%  max="<<max_bits<<"%\n";
+    cout << "  hamming distance / hex: avg_percentage="<<sum_hex / double(pairs)<<"%  min="<<min_hex<<"%  max="<<max_hex<<"%\n";
+
+
+    // 5) salt
+    cout << "\n# negriztamumas\n";
+    vector<uint8_t> input{'i','n','p','u','t'};
+    vector<uint8_t> salt1{'i','n','p','u','t', '1','2','3'};
+    vector<uint8_t> salt2{'i','n','p','u','t', '4','5','6'};
+    cout << "  input=" << to_hex(Hasher::hash(input)) << endl;
+    cout << "  input + salt1="<< to_hex(Hasher::hash(salt1)) << endl;
+    cout << "  input + salt2="<< to_hex(Hasher::hash(salt2)) << endl;
     return 0;
 }
