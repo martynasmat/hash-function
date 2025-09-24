@@ -25,12 +25,15 @@ struct Hasher {
         return (n<<c) | (n>>( (-c)&mask ));
     }
 
+    // Rotate left the product of XOR of members of arrays a & b
+    // A 16 byte input gives an 8 byte output
     static void mix(uint8_t out[8], const uint8_t a[8], const uint8_t b[8]) {
         for (int i = 0; i < 8; i++) {
             out[i] = rotl(uint8_t(a[i] ^ b[(i + 4) % 8]), 3);
         }
     }
 
+    // Pad input with zero-bytes and length of input at the end so that the total length is divisible by 16
     static vector<uint8_t> pad_input(const vector<uint8_t>& in) {
         vector<uint8_t> p = in;
         uint8_t len = p.size();
