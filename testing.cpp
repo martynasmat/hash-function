@@ -13,22 +13,31 @@
 
 using namespace std;
 
-static string to_hex(const array<uint8_t,8>& h){
+string to_hex(const array<uint8_t,8>& h){
     static const char* H="0123456789abcdef";
     string s; s.resize(16);
     for(int i=0;i<8;++i){ s[2*i]=H[h[i]>>4]; s[2*i+1]=H[h[i]&0xF]; }
     return s;
 }
 
-static string read_text(const string& path){
+double hamming_distance_bits(const std::array<uint8_t,8>& a, const std::array<uint8_t,8>& b) {
+    int d = 0;
+    for (int i = 0; i < 8; i++) {
+        auto x = uint8_t(a[i] ^ b[i]);
+        for (int bit = 0; bit < 8; ++bit) d += (x >> bit) & 1; // popcount(x)
+    }
+    return 100.0 * double(d) / 64.0;
+}
+
+string read_text(const string& path){
     ifstream in(path, ios::binary);
     ostringstream ss; ss<<in.rdbuf(); return ss.str();
 }
-static vector<string> read_lines(const string& path){
+vector<string> read_lines(const string& path){
     ifstream in(path);
     vector<string> v; string line; while(getline(in,line)) v.push_back(line); return v;
 }
-static bool split_pair_first_space(const string& line, string& a, string& b){
+bool split_pair_first_space(const string& line, string& a, string& b){
     size_t p=line.find(' '); if(p==string::npos) return false;
     a=line.substr(0,p); b=line.substr(p+1); return true;
 }
@@ -88,8 +97,8 @@ int main(){
         cout << "  eiluciu_kiekis=" << n << "  avg_ms=" << fixed << setprecision(3) << ms << "\n";
     }
 
-    // 3) collisions
-    cout << "\n# collisions\n";
+    // 3) kolizijos
+    cout << "\n# kolizijos\n";
     for(int L : {10,100,500,1000}){
         string path = DIR + ("collision"+to_string(L)+".txt");
         ifstream in(path);
@@ -104,5 +113,22 @@ int main(){
     }
 
     // 4) avalanche effect
+    cout << "\n# lavinos efektas\n";
+    double sum = 0, min=INT_MAX, max=INT_MIN;
+    int pairs=0;
+    ifstream in(DIR+"avalanche.txt");
+    string line,a,b;
+    while(getline(in,line)){
+        if(!split_pair_first_space(line,a,b)) continue;
+        pairs++;
+        vector<uint8_t> v1(a.begin(),a.end()), v2(b.begin(),b.end());
+        auto h1=Hasher::hash(v1), h2=Hasher::hash(v2);
+        double dist = hamming_distance_bits(h1, h2);
+        sum += dist;
+        if(dist < min) min = dist;
+        if(dist > max) max = dist;
+    }
+    cout << "  hamming distance / bits: avg_percentage="<<sum / double(pairs)<<"%  min="<<min<<"%  max="<<max<<"%\n";
+
     return 0;
 }
