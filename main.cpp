@@ -49,13 +49,12 @@ struct Hasher {
         return p;
     }
 
-    static vector<uint8_t> rearrange(const vector<uint8_t>& in) {
+    static vector<uint8_t> rearrange(const vector<uint8_t>& in, uint64_t len) {
         // rearranges characters using the mt19937 generator
         // uses length of padded input XOR 20250901 as seed
         vector<uint8_t> rearranged = in;
-        size_t l = rearranged.size();
-        l ^= 20250923;
-        mt19937 rng(l);
+        len ^= 20250923;
+        mt19937 rng(len);
         shuffle(rearranged.begin(), rearranged.end(), rng);
         return rearranged;
     }
@@ -69,7 +68,7 @@ struct Hasher {
         memcpy(acc, first, sizeof(acc));
 
         // apply permutation to padded input before mixing
-        msg = rearrange(msg);
+        msg = rearrange(msg, input.size());
 
         // hash 8 bytes at a time until whole input hashed
         for (size_t i = 0; i < msg.size(); i += 8) {
