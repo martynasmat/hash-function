@@ -179,6 +179,21 @@ int main(){
     efficiency_hash(DIR, lines);
     efficiency_sha(DIR, lines);
 
+    // 3) kolizijos
+    cout << "\n# kolizijos\n";
+    for(int L : {10,100,500,1000}){
+        string path = DIR + ("collision"+to_string(L)+".txt");
+        ifstream in(path);
+        size_t pairs=0, coll=0; string line,a,b;
+        while(getline(in,line)){
+            if(!split_pair_first_space(line,a,b)) continue;
+            vector<uint8_t> v1(a.begin(),a.end()), v2(b.begin(),b.end());
+            auto h1=Hasher::hash(v1), h2=Hasher::hash(v2);
+            if(h1==h2) ++coll; ++pairs;
+        }
+        cout << "  len="<<L<<"  pairs="<<pairs<<"  collisions="<<coll<<"\n";
+    }
+
     // 4) avalanche effect
     cout << "\n# lavinos efektas hash\n";
     double sum_bits = 0, sum_hex = 0, min_bits=INT_MAX, max_bits=INT_MIN, min_hex=INT_MAX, max_hex=INT_MIN;
