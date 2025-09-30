@@ -48,7 +48,7 @@ pseudokodas
 
 ## Efektyvumas
 ```
-# efektyvumas hash
+# efektyvumas v0.2
   eiluciu_kiekis=1  avg_ms=0.000
   eiluciu_kiekis=2  avg_ms=0.000
   eiluciu_kiekis=4  avg_ms=0.000
@@ -90,7 +90,7 @@ pseudokodas
 
 ## Lavinos efektas
 ```
-# lavinos efektas hash
+# lavinos efektas v0.2
   hamming distance / bits: avg_percentage=50.002%  min=31.250%  max=67.969%
   hamming distance / hex: avg_percentage=93.757%  min=71.875%  max=100.000%
 
@@ -139,3 +139,4 @@ hash-function/v0.2/
 ├── filegen.py                # Testavimo failų generavimo skriptas
 └── sha256.hpp                # SHA256 maišos funkcija
 ```
+
