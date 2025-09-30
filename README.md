@@ -44,7 +44,7 @@ pseudokodas
 ```
 - Hash'o ilgis vienodas visais atvejais.
 - Kiekvienas failas hash'inamas 2 kartus, abu hash'ai vienodi.
-- Hash'o ilgis 16 baitu, o v0.1 - 8 baitai.
+- Hash'o ilgis 16 baitų, o v0.1 - 8 baitai.
 
 ## Efektyvumas
 ```
@@ -75,7 +75,7 @@ pseudokodas
   eiluciu_kiekis=1024  avg_ms=0.048
 ```
 - Kiekvienas skaičius failo ```/test_files/konstitucija.txt``` eilučių (1, 2, 4...) hash'inamos po 10 kartų, išvedamas vidurkis. Matuojama milisekundėmis.
-- SHA256 vis tiek greitesnis, nors v0.2 nuo SHA256 atsilieka daug maziau, nei v0.1.
+- SHA256 vis tiek greitesnis, nors v0.2 nuo SHA256 atsilieka daug mažiau, nei v0.1.
 
 ![alt text](/results/image.png)
 
@@ -98,7 +98,7 @@ pseudokodas
   hamming distance / bits: avg_percentage=49.522%  min=37%  max=62%
   hamming distance / hex: avg_percentage=93.256%  min=78%  max=100%
 ```
-- Vidutines SHA256 ir v0.2 reiksmes labai panasios - skiriasi tik per ~0.5%.
+- Vidutinės SHA256 ir v0.2 reikšmės labai panašios - skiriasi tik per ~0.5%.
 - SHA256 minimalios reikšmės didesnes ~6.5%.
 
 ## Negrįžtamumas
@@ -111,32 +111,32 @@ pseudokodas
 
 ## Išvados
 ### Stiprybės
-- Vidutiniškai, pakeitus 1 simbolį, hash'ai bit'ų lygmeniu sutampa ~10.3%, o hex'ų lygmeniu ~20.5% (Lavinos efektas).
-- Maža kolizijų tikimybė.
-- Funkcija veikia pakankamai greitai, nors SHA256 veikia daug greičiau.
+- Maža kolizijų tikimybė
+- Funkcija veikia greitai
+- Lavinos efekto testo minimalios, vidutinės ir maksimalios reikšmės arba lenkia, arba nedaug atsilieka nuo SHA256
 
 ### Silpnybės
-- Lavinos efektas - kai kuriais atvejais, bitų lygmeniu 2 porų hash'ai gali skirtis tik ~1.6%
-- Hash'as yra tik 64 bitų dydžio, todėl yra didesnė tikimybė kolizijoms.
-- pad_input funkcijoje, pradinės reikšmės ilgis saugomas tik 8 bituose, tai reiškia, kad bet kurių 2 pradinių reikšmių, kurių ilgio, dalijant iš 256, liekana yra vienoda, ilgio baitas bus vienodas.
-
+- Greičiu atsilieka nuo SHA256
+- Galutinis hash'as yra 128 bitų dydžio (SHA256 - 256 bitai). Tai padidina kolizijų tikimybę.
+  
 ### vs. SHA256
 - SHA256 funkcija veikia greičiau
-- Lavinos efektas mano funkcijoje silpnesnis.
+- SHA256 hash'as 256 bitų ilgio, o v0.1 - 128 bitai
 
-# Projekto struktura
+# Projekto struktūra
 
 ```
-hash-function/tree/v0.2/
-├── ChatGPT-hash/           # ChatGPT 5 patobulintos maisos funkcijos failai
-    ├── cli-ChatGPT.cpp     # Komandines eilutes sasaja
-    ├── Hasher-ChatGPT.hpp  # Maisos funkcijos struktura
-    └── testing-ChatGPT.cpp # Eksperimentinio tyrimo ir palyginimo su SHA256 kodas
-├── hash/                   # v0.1 maisos funkcijos failai
-    ├── cli.cpp             # Komandines eilutes sasaja
-    ├── Hasher.hpp          # Maisos funkcijos struktura
-    └── testing.cpp         # Eksperimentinio tyrimo ir palyginimo su SHA256 kodas
-├── test_files/             # Testavimo failai 
-├── filegen.py              # Testavimo failu generavimo skriptas
-└── sha256.hpp              # SHA256 maisos funkcija
+hash-function/v0.2/
+├── ChatGPT-hash/             # ChatGPT 5 patobulintos maišos funkcijos failai
+    ├── cli-ChatGPT.cpp       # Komandinės eilutės sąsaja
+    ├── Hasher-ChatGPT.hpp    # Maišos funkcijos struktūra
+    └── testing-ChatGPT.cpp   # Eksperimentinio tyrimo ir palyginimo su SHA256 kodas
+├── hash/                     # v0.1 maišos funkcijos failai
+    ├── cli.cpp               # Komandinės eilutės sąsaja
+    ├── Hasher.hpp            # Maišos funkcijos struktūra
+    └── testing.cpp           # Eksperimentinio tyrimo ir palyginimo su SHA256 kodas
+├── test_files/               # Testavimo failai 
+├── filegen.py                # Testavimo failų generavimo skriptas
+└── sha256.hpp                # SHA256 maišos funkcija
+
 ```
