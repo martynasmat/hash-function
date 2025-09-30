@@ -138,5 +138,4 @@ hash-function/v0.2/
 ├── test_files/               # Testavimo failai 
 ├── filegen.py                # Testavimo failų generavimo skriptas
 └── sha256.hpp                # SHA256 maišos funkcija
-
 ```
