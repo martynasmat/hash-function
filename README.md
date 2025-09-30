@@ -1,53 +1,7 @@
 ﻿# Maišos funkcija
 # Pseudokodas
 ```
-def pad_input(input):
-    # Užpildome pradinę reikšmę nuliniais baitais ir pridedame
-    # pradinės reikšmės ilgį taip, kad bendras ilgis dalintųsi iš 16
-    
-    p = input
-    padZeros = 15 - (len(input) % 16)
-    for _ in range(0, padZeros):
-        p.append(0x00)
-    p.append(len % 256)
-    return p
-    
-def rearrange(padded_input, org_input):
-    # Sukeičiame simbolius vietomis “atsitiktine” tvarka.
-    # Kaip random generatoriaus “seed” naudojame pradinės reikšmės pirmo,
-    # vidurinio ir paskutinio baitų sumą XOR su pradinės reikšmės ilgiu.
-
-    rearranged = padded_input;
-    seed = org_input[0] + org_input[len(org_input)/2] + org_input[-1];
-    seed = seed XOR len(org_input);
-    random = mt19937(seed);
-    shuffle(rearranged, random);
-    return rearranged;
-
-def mix(a, b):
-    # 8 baitų blokus a ir b "sumaišome" į vieną 8 baitų bloką naudojant rotl funckiją, kuri "pasuka"
-    # a[n] XOR b[(n + 4) MOD 8] operacijos rezultato bitus į kairę pusę
-    # per antrame argumente nurodytą kiekį vietų (šiuo atveju 3)
-    # Galutinis rezultatas visada yra 8 baitų ilgio
-    
-    out = []
-    
-    for i in range (0, 8):
-        out[i] = rotl(a[i] XOR b[(i + 4) MOD 8], 3);
-        
-    return out
-
-def hash(input):
-    first = [ 0x20,0x03,0x01,0x08,0x20,0x03,0x01,0x08 ];
-    msg = pad_input(input);
-    acc = first
-    msg = rearrange(msg, input);
-
-    for (size_t i = 0; i < msg.size(); i += 8) {
-        acc = mix(acc, &msg[i]);
-    }
-
-    return acc
+pseudokodas
 ```
 
 # Eksperimentinis tyrimas
@@ -57,70 +11,71 @@ def hash(input):
 ## Išvedimo dydis ir deterministiškumas
 ```
 # isvedimo dydis ir deterministiskumas
-test_files/test_1char_1.txt  len=1  hash_len=8  hash=089a404208c04002 vienodi=true
-test_files/test_1char_2.txt  len=1  hash_len=8  hash=08c0404294c04002 vienodi=true
-test_files/test_1char_3.txt  len=1  hash_len=8  hash=08c0400200c05a02 vienodi=true
-test_files/test_1char_4.txt  len=1  hash_len=8  hash=08c040a108c84002 vienodi=true
-test_files/test_1char_5.txt  len=1  hash_len=8  hash=08c0404208c0e902 vienodi=true
-test_files/test_1char_6.txt  len=1  hash_len=8  hash=48c08c0208c04002 vienodi=true
-test_files/test_1char_7.txt  len=1  hash_len=8  hash=08c05a0208c84002 vienodi=true
-test_files/test_1char_8.txt  len=1  hash_len=8  hash=08c048027ac04002 vienodi=true
-test_files/test_1char_9.txt  len=1  hash_len=8  hash=08c0de4208c04002 vienodi=true
-test_files/test_1char_10.txt  len=1  hash_len=8  hash=08c04002088c4042 vienodi=true
-test_files/test_1000chars_1.txt  len=1000  hash_len=8  hash=e874b8788bd36748 vienodi=true
-test_files/test_1000chars_2.txt  len=1000  hash_len=8  hash=51c6b3974494bbb8 vienodi=true
-test_files/test_1000chars_3.txt  len=1000  hash_len=8  hash=6c5e222d8daad576 vienodi=true
-test_files/test_1000chars_4.txt  len=1000  hash_len=8  hash=046caa410465dd9b vienodi=true
-test_files/test_1000chars_5.txt  len=1000  hash_len=8  hash=1c935bb0446b7e78 vienodi=true
-test_files/test_1000chars_6.txt  len=1000  hash_len=8  hash=c06eeef8eaeeb5f1 vienodi=true
-test_files/test_1000chars_7.txt  len=1000  hash_len=8  hash=45fe920cd2a6968c vienodi=true
-test_files/test_1000chars_8.txt  len=1000  hash_len=8  hash=84e172848486be01 vienodi=true
-test_files/test_1000chars_9.txt  len=1000  hash_len=8  hash=b6a6835ba355a61a vienodi=true
-test_files/test_1000chars_10.txt  len=1000  hash_len=8  hash=ac81a1f8e6de05f6 vienodi=true
-test_files/test_1000chars_chardiff_1.txt  len=1000  hash_len=8  hash=9956ec22d5635d8f vienodi=true
-test_files/test_1000chars_chardiff_2.txt  len=1000  hash_len=8  hash=9956ec227d635d8f vienodi=true
-test_files/test_1000chars_chardiff_3.txt  len=1000  hash_len=8  hash=9956ec22ed635d8f vienodi=true
-test_files/test_1000chars_chardiff_4.txt  len=1000  hash_len=8  hash=9956ec2228635d8f vienodi=true
-test_files/test_1000chars_chardiff_5.txt  len=1000  hash_len=8  hash=9956ec22a9635d8f vienodi=true
-test_files/test_1000chars_chardiff_6.txt  len=1000  hash_len=8  hash=9956ec22b9635d8f vienodi=true
-test_files/test_1000chars_chardiff_7.txt  len=1000  hash_len=8  hash=9956ec223d635d8f vienodi=true
-test_files/test_1000chars_chardiff_8.txt  len=1000  hash_len=8  hash=9956ec2249635d8f vienodi=true
-test_files/test_1000chars_chardiff_9.txt  len=1000  hash_len=8  hash=9956ec2224635d8f vienodi=true
-test_files/test_1000chars_chardiff_10.txt  len=1000  hash_len=8  hash=9956ec2269635d8f vienodi=true
+../test_files/test_1char_1.txt  len=1  hash_len=16  hash=9867c279d834a79efc2dd17234bfd055 vienodi=true
+../test_files/test_1char_2.txt  len=1  hash_len=16  hash=b80daa89477f9d98771783c86d00a7ea vienodi=true
+../test_files/test_1char_3.txt  len=1  hash_len=16  hash=7f81b6bb11af99e90d9674aaa67d9bfe vienodi=true
+../test_files/test_1char_4.txt  len=1  hash_len=16  hash=0f6422b91d7bf4b53dd2f39b03c42268 vienodi=true
+../test_files/test_1char_5.txt  len=1  hash_len=16  hash=4fbc88c7686678baab8a72944a518a3e vienodi=true
+../test_files/test_1char_6.txt  len=1  hash_len=16  hash=63ff3636ccdaa06373b957c63bc6346f vienodi=true
+../test_files/test_1char_7.txt  len=1  hash_len=16  hash=545545af699392345cfc4343324470b9 vienodi=true
+../test_files/test_1char_8.txt  len=1  hash_len=16  hash=6000ebd44f11aa794f4ed45498ccb7a0 vienodi=true
+../test_files/test_1char_9.txt  len=1  hash_len=16  hash=ef4f87a3ee1cee1aefbcef900a58b9f5 vienodi=true
+../test_files/test_1char_10.txt  len=1  hash_len=16  hash=25ebf81e66c9698d27b67a31aad921a5 vienodi=true
+../test_files/test_1000chars_1.txt  len=1000  hash_len=16  hash=31d3bfd34a887253806df67cae8229f1 vienodi=true
+../test_files/test_1000chars_2.txt  len=1000  hash_len=16  hash=c00d4d51b05c7931972d3503997cc77c vienodi=true
+../test_files/test_1000chars_3.txt  len=1000  hash_len=16  hash=0598a72be09d6388cc2857866986d58f vienodi=true
+../test_files/test_1000chars_4.txt  len=1000  hash_len=16  hash=6b5fbf0b5a84a6dcd11e5dad9a6bb8f9 vienodi=true
+../test_files/test_1000chars_5.txt  len=1000  hash_len=16  hash=3a89608a8433c5a7703418134e535c88 vienodi=true
+../test_files/test_1000chars_6.txt  len=1000  hash_len=16  hash=a71ce91a028cf941cb7bf0795fb24ff3 vienodi=true
+../test_files/test_1000chars_7.txt  len=1000  hash_len=16  hash=990816209cc7806ef9abe26bca202cf7 vienodi=true
+../test_files/test_1000chars_8.txt  len=1000  hash_len=16  hash=48fd053806463bdb5f959194abaead32 vienodi=true
+../test_files/test_1000chars_9.txt  len=1000  hash_len=16  hash=b530becd7106251c923785ce71963127 vienodi=true
+../test_files/test_1000chars_10.txt  len=1000  hash_len=16  hash=1f32b8f775369e62cc278e2089abf3e1 vienodi=true
+../test_files/test_1000chars_chardiff_1.txt  len=1000  hash_len=16  hash=c40b5e4f23c6df5191a3ac87ba75c643 vienodi=true
+../test_files/test_1000chars_chardiff_2.txt  len=1000  hash_len=16  hash=7071bc994cd49135b29404367c787cd5 vienodi=true
+../test_files/test_1000chars_chardiff_3.txt  len=1000  hash_len=16  hash=54ad722972683ed14a2b2087a60a4ca7 vienodi=true
+../test_files/test_1000chars_chardiff_4.txt  len=1000  hash_len=16  hash=4b70215790a71af5eefc9f0f6fc606f9 vienodi=true
+../test_files/test_1000chars_chardiff_5.txt  len=1000  hash_len=16  hash=eedc49eb57202662830e686b35f53fb3 vienodi=true
+../test_files/test_1000chars_chardiff_6.txt  len=1000  hash_len=16  hash=e80e5c1630c44d73e7b050fdd6adfd81 vienodi=true
+../test_files/test_1000chars_chardiff_7.txt  len=1000  hash_len=16  hash=3d6c6572238d820e0e9205395e799344 vienodi=true
+../test_files/test_1000chars_chardiff_8.txt  len=1000  hash_len=16  hash=7f95fd9f62215bddc6c5eb2e0384040b vienodi=true
+../test_files/test_1000chars_chardiff_9.txt  len=1000  hash_len=16  hash=566d7c95ba339a71e7c3fcee1a009d5d vienodi=true
+../test_files/test_1000chars_chardiff_10.txt  len=1000  hash_len=16  hash=2c4ca81b09e899ce8412878fe6d4e5fb vienodi=true
 ```
 - Hash'o ilgis vienodas visais atvejais.
 - Kiekvienas failas hash'inamas 2 kartus, abu hash'ai vienodi.
+- Hash'o ilgis 16 baitu, o v0.1 - 8 baitai.
 
 ## Efektyvumas
 ```
 # efektyvumas hash
-  eiluciu_kiekis=1  avg_ms=0.021
-  eiluciu_kiekis=2  avg_ms=0.021
-  eiluciu_kiekis=4  avg_ms=0.023
-  eiluciu_kiekis=8  avg_ms=0.048
-  eiluciu_kiekis=16  avg_ms=0.081
-  eiluciu_kiekis=32  avg_ms=0.309
-  eiluciu_kiekis=64  avg_ms=0.291
-  eiluciu_kiekis=128  avg_ms=0.894
-  eiluciu_kiekis=256  avg_ms=1.864
-  eiluciu_kiekis=512  avg_ms=4.865
-  eiluciu_kiekis=1024  avg_ms=6.164
+  eiluciu_kiekis=1  avg_ms=0.000
+  eiluciu_kiekis=2  avg_ms=0.000
+  eiluciu_kiekis=4  avg_ms=0.000
+  eiluciu_kiekis=8  avg_ms=0.001
+  eiluciu_kiekis=16  avg_ms=0.002
+  eiluciu_kiekis=32  avg_ms=0.003
+  eiluciu_kiekis=64  avg_ms=0.005
+  eiluciu_kiekis=128  avg_ms=0.016
+  eiluciu_kiekis=256  avg_ms=0.026
+  eiluciu_kiekis=512  avg_ms=0.096
+  eiluciu_kiekis=1024  avg_ms=0.111
 
 # efektyvumas SHA256
-  eiluciu_kiekis=1  avg_ms=0.001
+  eiluciu_kiekis=1  avg_ms=0.000
   eiluciu_kiekis=2  avg_ms=0.001
-  eiluciu_kiekis=4  avg_ms=0.000
-  eiluciu_kiekis=8  avg_ms=0.000
+  eiluciu_kiekis=4  avg_ms=0.001
+  eiluciu_kiekis=8  avg_ms=0.001
   eiluciu_kiekis=16  avg_ms=0.001
   eiluciu_kiekis=32  avg_ms=0.001
   eiluciu_kiekis=64  avg_ms=0.002
   eiluciu_kiekis=128  avg_ms=0.005
   eiluciu_kiekis=256  avg_ms=0.010
-  eiluciu_kiekis=512  avg_ms=0.029
-  eiluciu_kiekis=1024  avg_ms=0.055
-  ```
+  eiluciu_kiekis=512  avg_ms=0.044
+  eiluciu_kiekis=1024  avg_ms=0.048
+```
 - Kiekvienas skaičius failo ```/test_files/konstitucija.txt``` eilučių (1, 2, 4...) hash'inamos po 10 kartų, išvedamas vidurkis. Matuojama milisekundėmis.
-- SHA256 žymiai greitesnis.
+- SHA256 vis tiek greitesnis, nors v0.2 nuo SHA256 atsilieka daug maziau, nei v0.1.
 
 ![alt text](/results/image.png)
 
@@ -136,25 +91,22 @@ test_files/test_1000chars_chardiff_10.txt  len=1000  hash_len=8  hash=9956ec2269
 ## Lavinos efektas
 ```
 # lavinos efektas hash
-  hamming distance / bits: avg_percentage=10.489%  min=1.562%  max=76.562%
-  hamming distance / hex: avg_percentage=20.939%  min=6.250%  max=100.000%
+  hamming distance / bits: avg_percentage=50.002%  min=31.250%  max=67.969%
+  hamming distance / hex: avg_percentage=93.757%  min=71.875%  max=100.000%
 
 # lavinos efektas sha256
-  hamming distance / bits: avg_percentage=49.519%  min=35%  max=65%
-  hamming distance / hex: avg_percentage=93.242%  min=78%  max=100%
+  hamming distance / bits: avg_percentage=49.522%  min=37%  max=62%
+  hamming distance / hex: avg_percentage=93.256%  min=78%  max=100%
 ```
-- SHA256 atveju, 2 vienu simboliu besiskiriančių porų hash'ai vidutiniškai skiriasi daugiau.
-- SHA256 minimalios reikšmės taip pat žymiai didesnės.
+- Vidutines SHA256 ir v0.2 reiksmes labai panasios - skiriasi tik per ~0.5%.
+- SHA256 minimalios reikšmės didesnes ~6.5%.
 
 ## Negrįžtamumas
 ```
-# lavinos efektas hash
-  hamming distance / bits: avg_percentage=10.489%  min=1.562%  max=76.562%
-  hamming distance / hex: avg_percentage=20.939%  min=6.250%  max=100.000%
-
-# lavinos efektas sha256
-  hamming distance / bits: avg_percentage=49.519%  min=35%  max=65%
-  hamming distance / hex: avg_percentage=93.242%  min=78%  max=100%
+# negriztamumas
+  input         = 402bd15094118b121548ec670b6607d0
+  input + salt1 = 33c0ef3bece4e694b2573b772513bda3
+  input + salt2 = 0ba378bd78f0790165c14e3a98741554
 ```
 
 ## Išvados
@@ -171,3 +123,20 @@ test_files/test_1000chars_chardiff_10.txt  len=1000  hash_len=8  hash=9956ec2269
 ### vs. SHA256
 - SHA256 funkcija veikia greičiau
 - Lavinos efektas mano funkcijoje silpnesnis.
+
+# Projekto struktura
+
+```
+hash-function/tree/v0.2/
+├── ChatGPT-hash/           # ChatGPT 5 patobulintos maisos funkcijos failai
+    ├── cli-ChatGPT.cpp     # Komandines eilutes sasaja
+    ├── Hasher-ChatGPT.hpp  # Maisos funkcijos struktura
+    └── testing-ChatGPT.cpp # Eksperimentinio tyrimo ir palyginimo su SHA256 kodas
+├── hash/                   # v0.1 maisos funkcijos failai
+    ├── cli.cpp             # Komandines eilutes sasaja
+    ├── Hasher.hpp          # Maisos funkcijos struktura
+    └── testing.cpp         # Eksperimentinio tyrimo ir palyginimo su SHA256 kodas
+├── test_files/             # Testavimo failai 
+├── filegen.py              # Testavimo failu generavimo skriptas
+└── sha256.hpp              # SHA256 maisos funkcija
+```

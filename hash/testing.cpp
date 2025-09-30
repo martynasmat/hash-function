@@ -10,7 +10,7 @@
 #include <chrono>
 #include <cstdint>
 #include "Hasher.hpp"
-#include "sha256.hpp"
+#include "../sha256.hpp"
 
 using namespace std;
 
@@ -149,7 +149,7 @@ void efficiency_hash(string DIR, vector<string> &linesarg) {
 }
 
 int main(){
-    const string DIR = "test_files/";
+    const string DIR = "../test_files/";
 
     // 1) išvedimo dydis ir deterministiskumas
     cout << "# isvedimo dydis ir deterministiskumas\n";
