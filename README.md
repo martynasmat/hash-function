@@ -148,18 +148,14 @@ test_files/test_1000chars_chardiff_10.txt  len=1000  hash_len=8  hash=9956ec2269
 
 ## Negrįžtamumas
 ```
-# lavinos efektas hash
-  hamming distance / bits: avg_percentage=10.489%  min=1.562%  max=76.562%
-  hamming distance / hex: avg_percentage=20.939%  min=6.250%  max=100.000%
-
-# lavinos efektas sha256
-  hamming distance / bits: avg_percentage=49.519%  min=35%  max=65%
-  hamming distance / hex: avg_percentage=93.242%  min=78%  max=100%
+# negriztamumas
+  input=08774002089a3337
+  input + salt1=15595c4e845be349
+  input + salt2=557140b5acc06902
 ```
 
 ## Išvados
 ### Stiprybės
-- Vidutiniškai, pakeitus 1 simbolį, hash'ai bit'ų lygmeniu sutampa ~10.3%, o hex'ų lygmeniu ~20.5% (Lavinos efektas).
 - Maža kolizijų tikimybė.
 - Funkcija veikia pakankamai greitai, nors SHA256 veikia daug greičiau.
 
@@ -171,3 +167,4 @@ test_files/test_1000chars_chardiff_10.txt  len=1000  hash_len=8  hash=9956ec2269
 ### vs. SHA256
 - SHA256 funkcija veikia greičiau
 - Lavinos efektas mano funkcijoje silpnesnis.
+
