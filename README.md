@@ -208,6 +208,7 @@ def hash128(data: bytes) -> bytes:
   input + salt1 = 33c0ef3bece4e694b2573b772513bda3
   input + salt2 = 0ba378bd78f0790165c14e3a98741554
 ```
+- Pridėjus salt, hash'o reikšmė vidutiniškai pasikeičia bent ~50% bit'ų lygmeniu (pagal lavinos efekto testus)
 
 ## Išvados
 ### Stiprybės
@@ -240,5 +241,6 @@ hash-function/v0.2/
 ├── filegen.py                # Testavimo failų generavimo skriptas
 └── sha256.hpp                # SHA256 maišos funkcija
 ```
+
 
 
