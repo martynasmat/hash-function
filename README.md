@@ -223,7 +223,6 @@ def hash128(data: bytes) -> bytes:
 ### vs. SHA256
 - SHA256 funkcija veikia greičiau
 - SHA256 hash'as 256 bitų ilgio, o v0.2 - 128 bitai
-- 
 
 # Projekto struktūra
 
@@ -241,6 +240,7 @@ hash-function/v0.2/
 ├── filegen.py                # Testavimo failų generavimo skriptas
 └── sha256.hpp                # SHA256 maišos funkcija
 ```
+
 
 
 
