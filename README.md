@@ -1,7 +1,107 @@
 ﻿# Maišos funkcija
+ ChatGPT 5 patobulinta funkcija
 # Pseudokodas
 ```
-pseudokodas
+# rotate left 64-bit
+def rotl64(x: int, r: int) -> int:
+    r &= 63
+    return ((x << r) & ((1 << 64) - 1)) | (x >> (64 - r))
+
+def mix_round(s: list[int]) -> None:
+    # s masyvas sudarytas iš keturių 8 baitų blokų
+    s[0] = (s[0] + s[1]) & 0xFFFFFFFFFFFFFFFF
+    s[2] = (s[2] + s[3]) & 0xFFFFFFFFFFFFFFFF
+
+    s[1] = rotl64(s[1], 13) ^ s[0]
+    s[3] = rotl64(s[3], 16) ^ s[2]
+
+    s[0] = (rotl64(s[0], 32) + s[3]) & 0xFFFFFFFFFFFFFFFF
+    s[2] = (rotl64(s[2], 21) + s[1]) & 0xFFFFFFFFFFFFFFFF
+
+    s[1] = rotl64(s[1], 17) ^ s[2]
+    s[3] = rotl64(s[3], 32) ^ s[0]
+
+def le64(b: bytes) -> int:
+    # 8 baitai perskaitomi į 64 bitų int
+    v = 0
+    for i in range(8):
+        v |= b[i] << (8 * i)
+    return v
+
+def absorb32(s: list[int], block32: bytes, rounds: int) -> None:
+    # block32 yra 32 baitų ilgio
+    m0 = le64(block32[ 0: 8])
+    m1 = le64(block32[ 8:16])
+    m2 = le64(block32[16:24])
+    m3 = le64(block32[24:32])
+
+    # Kiekviena s 8 baitų grupė apdorojama XOR su m0, m1, m2, m3
+    s[0] ^= m0; s[1] ^= m1; s[2] ^= m2; s[3] ^= m3
+
+    for _ in range(rounds):
+        mix_round(s)
+
+    # s vėl apdorojama XOR su m0, m1, m2, m3 kita tvarka
+    s[0] ^= m2; s[1] ^= m3; s[2] ^= m0; s[3] ^= m1
+
+def pad_sha_like_32B(msg: bytes) -> list[bytes]:
+    """
+    msg || 0x80 || 0x00*… kol ilgis mod 32 = 24, tada 8 baituose nurodomas ilgis.
+    """
+    n = len(msg)
+    rem = n % 32
+
+    buf = bytearray(msg[n - rem:])
+    buf.append(0x80)
+
+    # Pridėdami 0x00 baitai, kol len(buf) % 32 == 24
+    while (len(buf) % 32) != 24:
+        buf.append(0x00)
+
+    # Pridedamas ilgis
+    length_le = n.to_bytes(8, 'little')
+    buf.extend(length_le)
+
+    # Bendras buf ilgis yra 32 arba 64 baitai
+    blocks = []
+    for i in range(0, len(buf), 32):
+        blk = bytes(buf[i:i+32])
+        blocks.append(blk)
+    return blocks
+
+def hash128(data: bytes) -> bytes:
+    # 1) Konstantos
+    s = [
+        0x243F6A8885A308D3,
+        0x13198A2E03707344,
+        0xA4093822299F31D0,
+        0x082EFA98EC4E6C89,
+    ]
+
+    ROUNDS_PER_BLOCK = 2
+    FINAL_ROUNDS = 8
+
+    # 2) Visa įvestis "suabsorb'inama" į 32 baitus
+    i = 0
+    n = len(data)
+    while i + 32 <= n:
+        absorb32(s, data[i:i+32], ROUNDS_PER_BLOCK)
+        i += 32
+
+    # 3) Pad'inimas ir paskutinis(-iai) blokas(-ai) vėl "suabsorb'inami". Galutinis rezultatas yra 32 baitų ilgio
+    padded_blocks = pad_sha_like_32B(data[i:])
+    for blk in padded_blocks:
+        absorb32(s, blk, ROUNDS_PER_BLOCK)
+
+    # 4) Galutinis sumaišymas
+    for _ in range(FINAL_ROUNDS):
+        mix_round(s)
+
+    # 5) Hash'as (16 baitų) = (s0 ^ s2) + (s1 ^ s3)
+    h0 = (s[0] ^ s[2]) & 0xFFFFFFFFFFFFFFFF
+    h1 = (s[1] ^ s[3]) & 0xFFFFFFFFFFFFFFFF
+    out = h0.to_bytes(8, 'little') + h1.to_bytes(8, 'little')
+    return out
 ```
 
 # Eksperimentinis tyrimas
@@ -99,7 +199,7 @@ pseudokodas
   hamming distance / hex: avg_percentage=93.256%  min=78%  max=100%
 ```
 - Vidutinės SHA256 ir v0.2 reikšmės labai panašios - skiriasi tik per ~0.5%.
-- SHA256 minimalios reikšmės didesnes ~6.5%.
+- SHA256 minimalios reikšmės didesnės ~6.5%.
 
 ## Negrįžtamumas
 ```
@@ -121,7 +221,8 @@ pseudokodas
   
 ### vs. SHA256
 - SHA256 funkcija veikia greičiau
-- SHA256 hash'as 256 bitų ilgio, o v0.1 - 128 bitai
+- SHA256 hash'as 256 bitų ilgio, o v0.2 - 128 bitai
+- 
 
 # Projekto struktūra
 
@@ -139,4 +240,5 @@ hash-function/v0.2/
 ├── filegen.py                # Testavimo failų generavimo skriptas
 └── sha256.hpp                # SHA256 maišos funkcija
 ```
+
 
