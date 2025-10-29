@@ -66,4 +66,23 @@ public:
     bool isMempoolEmpty() const {
         return mempool.empty();
     }
+
+private:
+    vector<Transaction> getRandomTxs(int64_t count) {
+        vector<Transaction> selected;
+        if (mempool.empty()) return selected;
+
+        mt19937_64 rng(251029);
+        uniform_int_distribution<uint64_t> dist(0, mempool.size() - 1);
+
+        for (size_t i = 0; i < count && !mempool.empty(); i++) {
+            uint64_t index = dist(rng);
+            selected.push_back(mempool[index]);
+            mempool[index] = mempool.back();
+            mempool.pop_back();
+        }
+
+        return selected;
+    }
+
 };
