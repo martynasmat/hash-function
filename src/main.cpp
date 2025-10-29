@@ -10,14 +10,21 @@
 
 using namespace std;
 
-int64_t USER_COUNT = 1000;
-int64_t TRANSACTION_COUNT = 10000;
+uint64_t USER_COUNT = 1000;
+uint64_t TRANSACTION_COUNT = 10000;
 
 vector<User> generateUsers(size_t count);
+vector<Transaction> generateTransactions(vector<User>& u, size_t count);
 
 int main() {
     // Generate users
     vector<User> users = generateUsers(USER_COUNT);
+
+    // Generate transactions
+    vector<Transaction> transactions = generateTransactions(
+            users,
+            TRANSACTION_COUNT
+            );
 
     // genesis block
     Transaction tx1("test1", "test2", 50);
@@ -56,5 +63,26 @@ vector<User> generateUsers(size_t count) {
 }
 
 vector<Transaction> generateTransactions(vector<User>& u, size_t count) {
+    vector<Transaction> txs;
+    mt19937_64 rng(251029);
+    uniform_int_distribution<size_t> userDist(0, u.size() - 1);
+    uniform_int_distribution<int64_t> amtDist(100, 100000);
 
+    for (uint64_t i = 0; i < count; i++) {
+        User snd = u[userDist(rng)];
+        User rcv = u[userDist(rng)];
+
+        while (snd.public_key == rcv.public_key) {
+            rcv = u[userDist(rng)];
+        };
+
+        Transaction tx(
+                snd.public_key,
+               rcv.public_key,
+               amtDist(rng)
+                       );
+        txs.push_back(tx);
+    }
+
+    return txs;
 }

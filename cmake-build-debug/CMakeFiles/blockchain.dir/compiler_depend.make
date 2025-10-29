@@ -634,7 +634,8 @@ CMakeFiles/blockchain.dir/src/main.cpp.obj: C:/Users/marty/Desktop/blockchain/ha
   C:/Users/marty/Desktop/blockchain/hash-function/src/block/Block.h \
   C:/Users/marty/Desktop/blockchain/hash-function/src/blockchain/Blockchain.h \
   C:/Users/marty/Desktop/blockchain/hash-function/src/hasher/hashfunc.hpp \
-  C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.h
+  C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.h \
+  C:/Users/marty/Desktop/blockchain/hash-function/src/user/User.h
 
 CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj: C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
@@ -843,6 +844,8 @@ CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj: C:/Users/marty/De
   C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
   C:/Users/marty/Desktop/blockchain/hash-function/src/hasher/hashfunc.hpp \
   C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.h
+
+CMakeFiles/blockchain.dir/src/user/User.cpp.obj: C:/Users/marty/Desktop/blockchain/hash-function/src/user/User.cpp
 
 
 C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/refwrap.h:
@@ -1271,4 +1274,8 @@ C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.h:
 
 C:/Users/marty/Desktop/blockchain/hash-function/src/main.cpp:
 
+C:/Users/marty/Desktop/blockchain/hash-function/src/user/User.h:
+
 C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.cpp:
+
+C:/Users/marty/Desktop/blockchain/hash-function/src/user/User.cpp:
