@@ -37,3 +37,24 @@ struct BlockNode {
     BlockNode(Block  b)
             : block(std::move(b)), prev_hp() {}
 };
+
+class Blockchain {
+private:
+    BlockNode* head;
+    string difficulty;
+    size_t block_count;
+
+public:
+    explicit Blockchain(string  diff)
+            : head(nullptr),
+              difficulty(std::move(diff)),
+              block_count(0) {}
+
+    void genGenesisBlock(const std::vector<Transaction>& txs);
+
+    void genBlock(const std::vector<Transaction>& txs);
+
+    void printChain() const;
+
+    size_t getCount() const { return block_count; }
+};

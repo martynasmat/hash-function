@@ -10,4 +10,5 @@ add_executable(blockchain
         src/hasher/hashfunc.hpp
         src/transaction/Transaction.cpp
         src/blockchain/blockchain.h
+        src/blockchain/blockchain.cpp
 )

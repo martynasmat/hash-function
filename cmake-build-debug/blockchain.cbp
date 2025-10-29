@@ -88,6 +88,9 @@
 		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/block/Block.h">
 			<Option target="blockchain"/>
 		</Unit>
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/blockchain/blockchain.cpp">
+			<Option target="blockchain"/>
+		</Unit>
 		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/blockchain/blockchain.h">
 			<Option target="blockchain"/>
 		</Unit>
