@@ -2,6 +2,8 @@
 #include <string>
 #include <cstdint>
 #include "Transaction.h"
+#include <vector>
+#include <hashfunc.hpp>
 
 using namespace std;
 
@@ -14,24 +16,30 @@ private:
     string difficulty_target;
     array<uint8_t, 16> root_hash;
 
+    array<uint8_t, 16> block_hash;
+
     vector<Transaction> transactions;
 
+    Hasher hasher;
+
 public:
-    Block(const std::array<uint8_t,16>& prev_hash,
-          const std::vector<Transaction>& txs,
-          const std::string& diff_target);
+    Block(const array<uint8_t, 16>& prev_hash,
+          const vector<Transaction>& txs,
+          const string& diff_target);
 
     void mine();
 
-    const array<uint8_t,16>& getHash() const {
+    static string toHex(const array<uint8_t, 16>& bytes);
+
+    const array<uint8_t, 16>& getHash() const {
         return block_hash;
     }
 
-    const array<uint8_t,16>& getPrevHash() const {
+    const array<uint8_t, 16>& getPrevHash() const {
         return prev_block_hash;
     }
 
-    const array<uint8_t,16>& getRootHash() const {
+    const array<uint8_t, 16>& getRootHash() const {
         return root_hash;
     }
 
@@ -50,4 +58,8 @@ public:
     const vector<Transaction>& getTransactions() const {
         return transactions;
     }
+
+private:
+    array<uint8_t,16> hashHeader();
+    array<uint8_t,16> hashRoot();
 };
