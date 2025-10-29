@@ -45,3 +45,23 @@ void Block::hashRoot() {
 
     root_hash = hasher.hash(buf);
 }
+
+
+array<uint8_t,16> Block::hashHeader() const {
+    string data = "";
+
+    data += toHex(prev_block_hash);
+    data += std::to_string(timestamp);
+    data += version;
+    data += std::to_string(nonce);
+    data += difficulty_target;
+    data += toHex(root_hash);
+
+    vector<uint8_t> buffer;
+    buffer.reserve(data.size());
+    for (char c : data) {
+        buffer.push_back(static_cast<uint8_t>(c));
+    }
+
+    return hasher.hash(buffer);
+}
