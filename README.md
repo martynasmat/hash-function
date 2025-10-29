@@ -27,8 +27,8 @@ objektą ir ```HashPointer``` objektą, kuris rodo į praėjusį ```BlockNode```
 Sugeneruotos transakcijos saugomos ```blockchain/Blockchain.h``` faile aprašytame ```Blockchain``` klasės kintamajame ```mempool```.
 Kol mempool'e yra transakcijų, ```main.cpp``` faile kviečiama ```Blockchain.mineNextBlock()``` funkcija.
 ```mineNextBlock()``` funkcijoje iš mempool'o atsitiktinai išrenkama iki 100 transakcijų, apskaičiuojamas praeito bloko
-hash'as (genesis bloko atveju užpildoma 0) ir sukuriamas naujas blokas. Iškasus bloką, sukuriama ```BlockNode``` instancija,
-kurioje saugomas naujas blokas bei praeito bloko ```HashPointer```. ```Blockchain.head``` nurodomas į naują ```BlockNode```.
+hash'as (genesis bloko atveju užpildoma 0) ir sukuriamas naujas blokas. Iškasus bloką, sukuriamas ```BlockNode``` objektas,
+kuriame saugomas naujas blokas bei praeito bloko ```HashPointer```. ```Blockchain.head``` nurodomas į naują ```BlockNode```.
 
 ## Komandinės eilutės sąsaja
 
