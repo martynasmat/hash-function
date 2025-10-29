@@ -1,26 +1,29 @@
+#include <iostream>
 #include <vector>
+#include <cstdint>
 #include <array>
 
-#include "transaction/Transaction.h"
-#include "block/Block.h"
+#include "./transaction/Transaction.h"
+#include "./blockchain/Blockchain.h"
 
 using namespace std;
 
 int main() {
-    Transaction tx1("testas_publickey_0001", "testas_publickey_0002", 50);
-    Transaction tx2("testas_publickey_0002", "testas_publickey_0001", 20);
-    Transaction tx3("testas_publickey_0003", "testas_publickey_0004", 5);
+    // genesis block
+    Transaction tx1("test1", "test2", 50);
+    Transaction tx2("test1", "test3", 20);
+    Transaction tx3("test4", "test2", 5);
+    vector<Transaction> genesis_block_txs = { tx1, tx2, tx3 };
 
-    vector<Transaction> transactions;
-    transactions.push_back(tx1);
-    transactions.push_back(tx2);
-    transactions.push_back(tx3);
+    Transaction tx4("test6", "test4", 12);
+    Transaction tx5("test3", "test6", 7);
+    vector<Transaction> new_block_txs = { tx4, tx5 };
 
-    array<uint8_t,16> prev_hash{};
-    prev_hash.fill(0);
+    Blockchain blockchain("000");
+    blockchain.genGenesisBlock(genesis_block_txs);
+    blockchain.genBlock(new_block_txs);
 
-    Block genesis_block(prev_hash, transactions, "000");
-    genesis_block.mine();
+    blockchain.printChain();
 
     return 0;
 }

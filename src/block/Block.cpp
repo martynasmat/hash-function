@@ -101,4 +101,6 @@ void Block::mine() {
              << tx.getReceiver() << " amt: " << tx.getAmount()
              << " coins / id=" << Block::toHex(tx.getId()) << "\n";
     }
+
+    cout << "\n\n";
 }

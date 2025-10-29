@@ -9,6 +9,6 @@ add_executable(blockchain
         src/transaction/Transaction.cpp
         src/hasher/hashfunc.hpp
         src/transaction/Transaction.cpp
-        src/blockchain/blockchain.h
-        src/blockchain/blockchain.cpp
+        src/blockchain/Blockchain.h
+        src/blockchain/Blockchain.cpp
 )

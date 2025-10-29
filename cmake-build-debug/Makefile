@@ -152,29 +152,29 @@ src/block/Block.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/block/Block.cpp.s
 .PHONY : src/block/Block.cpp.s
 
-src/blockchain/blockchain.obj: src/blockchain/blockchain.cpp.obj
-.PHONY : src/blockchain/blockchain.obj
+src/blockchain/Blockchain.obj: src/blockchain/Blockchain.cpp.obj
+.PHONY : src/blockchain/Blockchain.obj
 
 # target to build an object file
-src/blockchain/blockchain.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/blockchain/blockchain.cpp.obj
-.PHONY : src/blockchain/blockchain.cpp.obj
+src/blockchain/Blockchain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj
+.PHONY : src/blockchain/Blockchain.cpp.obj
 
-src/blockchain/blockchain.i: src/blockchain/blockchain.cpp.i
-.PHONY : src/blockchain/blockchain.i
+src/blockchain/Blockchain.i: src/blockchain/Blockchain.cpp.i
+.PHONY : src/blockchain/Blockchain.i
 
 # target to preprocess a source file
-src/blockchain/blockchain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/blockchain/blockchain.cpp.i
-.PHONY : src/blockchain/blockchain.cpp.i
+src/blockchain/Blockchain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.i
+.PHONY : src/blockchain/Blockchain.cpp.i
 
-src/blockchain/blockchain.s: src/blockchain/blockchain.cpp.s
-.PHONY : src/blockchain/blockchain.s
+src/blockchain/Blockchain.s: src/blockchain/Blockchain.cpp.s
+.PHONY : src/blockchain/Blockchain.s
 
 # target to generate assembly for a file
-src/blockchain/blockchain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/blockchain/blockchain.cpp.s
-.PHONY : src/blockchain/blockchain.cpp.s
+src/blockchain/Blockchain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.s
+.PHONY : src/blockchain/Blockchain.cpp.s
 
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
@@ -236,9 +236,9 @@ help:
 	@echo ... src/block/Block.obj
 	@echo ... src/block/Block.i
 	@echo ... src/block/Block.s
-	@echo ... src/blockchain/blockchain.obj
-	@echo ... src/blockchain/blockchain.i
-	@echo ... src/blockchain/blockchain.s
+	@echo ... src/blockchain/Blockchain.obj
+	@echo ... src/blockchain/Blockchain.i
+	@echo ... src/blockchain/Blockchain.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

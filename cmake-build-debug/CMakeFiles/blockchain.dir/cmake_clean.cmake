@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/blockchain.dir/src/block/Block.cpp.obj"
   "CMakeFiles/blockchain.dir/src/block/Block.cpp.obj.d"
-  "CMakeFiles/blockchain.dir/src/blockchain/blockchain.cpp.obj"
-  "CMakeFiles/blockchain.dir/src/blockchain/blockchain.cpp.obj.d"
+  "CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj"
+  "CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj.d"
   "CMakeFiles/blockchain.dir/src/main.cpp.obj"
   "CMakeFiles/blockchain.dir/src/main.cpp.obj.d"
   "CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj"

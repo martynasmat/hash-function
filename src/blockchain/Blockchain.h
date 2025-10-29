@@ -19,7 +19,7 @@ struct HashPointer {
     HashPointer()
             : prev_block_hash{}, prev_block_ptr(nullptr)
     {
-        prev_block_hash.fill(0); // default to all zeros
+        prev_block_hash.fill(0);
     }
 
     HashPointer(const std::array<uint8_t,16>& h, BlockNode* p)
