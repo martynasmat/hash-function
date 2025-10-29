@@ -30,3 +30,18 @@ Block::Block(const std::array<uint8_t, 16>& prev_hash,
 {
     hashRoot();
 }
+
+void Block::hashRoot() {
+    vector<uint8_t> buf;
+
+    for (const auto& tx : transactions) {
+        const array<uint8_t,16>& tx_id = tx.getId();
+        buf.insert(buf.end(), tx_id.begin(), tx_id.end());
+    }
+
+    if (buf.empty()) {
+        buf.push_back(0);
+    }
+
+    root_hash = hasher.hash(buf);
+}
