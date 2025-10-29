@@ -224,30 +224,6 @@ src/transaction/Transaction.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.s
 .PHONY : src/transaction/Transaction.cpp.s
 
-src/user/User.obj: src/user/User.cpp.obj
-.PHONY : src/user/User.obj
-
-# target to build an object file
-src/user/User.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/user/User.cpp.obj
-.PHONY : src/user/User.cpp.obj
-
-src/user/User.i: src/user/User.cpp.i
-.PHONY : src/user/User.i
-
-# target to preprocess a source file
-src/user/User.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/user/User.cpp.i
-.PHONY : src/user/User.cpp.i
-
-src/user/User.s: src/user/User.cpp.s
-.PHONY : src/user/User.s
-
-# target to generate assembly for a file
-src/user/User.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/user/User.cpp.s
-.PHONY : src/user/User.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -269,9 +245,6 @@ help:
 	@echo ... src/transaction/Transaction.obj
 	@echo ... src/transaction/Transaction.i
 	@echo ... src/transaction/Transaction.s
-	@echo ... src/user/User.obj
-	@echo ... src/user/User.i
-	@echo ... src/user/User.s
 .PHONY : help
 
 

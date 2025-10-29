@@ -15,6 +15,8 @@ uint64_t TRANSACTION_COUNT = 10000;
 
 vector<User> generateUsers(size_t count);
 vector<Transaction> generateTransactions(vector<User>& u, size_t count);
+void printBlock(uint64_t index, bool with_txs, const Block* b);
+void runCli(const Blockchain& chain);
 
 int main() {
     // Generate users
@@ -26,21 +28,16 @@ int main() {
             TRANSACTION_COUNT
             );
 
-    // genesis block
-    Transaction tx1("test1", "test2", 50);
-    Transaction tx2("test1", "test3", 20);
-    Transaction tx3("test4", "test2", 5);
-    vector<Transaction> genesis_block_txs = { tx1, tx2, tx3 };
-
-    Transaction tx4("test6", "test4", 12);
-    Transaction tx5("test3", "test6", 7);
-    vector<Transaction> new_block_txs = { tx4, tx5 };
-
     Blockchain blockchain("000");
-    blockchain.genGenesisBlock(genesis_block_txs);
-    blockchain.genBlock(new_block_txs);
+    blockchain.loadIntoMempool(transactions);
+
+    while (!blockchain.isMempoolEmpty()) {
+        blockchain.mineNextBlock();
+    }
 
     blockchain.printChain();
+
+    runCli(blockchain);
 
     return 0;
 }
@@ -85,4 +82,68 @@ vector<Transaction> generateTransactions(vector<User>& u, size_t count) {
     }
 
     return txs;
+}
+
+void runCli(const Blockchain& chain) {
+    cout << "\nCommands:\n"
+            "  count             -> show number of blocks\n"
+            "  tip               -> show the latest block (with txs)\n"
+            "  show N            -> show block N (0 = genesis)\n"
+            "  showfull N          -> show block N with transactions\n"
+            "  help              -> show this help\n"
+            "  quit              -> exit\n\n";
+
+    string line;
+    while (true) {
+        cout << "> ";
+        if (!getline(cin, line)) break;
+
+        if (line == "quit" || line == "exit") {
+            break;
+        } else if (line == "help") {
+            cout << "count | tip | show N | showfull N | help | quit\n";
+        } else if (line == "count") {
+            cout << "Blocks: " << chain.getCount() << "\n";
+        } else if (line == "tip") {
+            if (chain.getCount() == 0) { cout << "Chain is empty.\n"; continue; }
+            printBlock(chain.getCount() - 1, true, chain.getBlockByIndex(chain.getCount() - 1));
+        } else if (line.rfind("showfull ", 0) == 0) {
+            try {
+                size_t idx = stoull(line.substr(9));
+                printBlock(idx, true, chain.getBlockByIndex(idx));
+            } catch (...) { cout << "Usage: showfull N\n"; }
+        } else if (line.rfind("show ", 0) == 0) {
+            try {
+                size_t idx = stoull(line.substr(5));
+                printBlock(idx, false, chain.getBlockByIndex(idx));
+            } catch (...) { cout << "Usage: show N\n"; }
+        } else if (line.empty()) {
+            continue;
+        } else {
+            cout << "Unrecognized command. Type 'help'.\n";
+        }
+    }
+}
+
+void printBlock(uint64_t index, bool with_txs, const Block* b) {
+    if (b == nullptr) {
+        return;
+    }
+
+    std::cout << "Block " << index << "\n";
+    std::cout << "  Hash:        " << Block::toHex(b->getHash()) << "\n";
+    std::cout << "  Prev Hash:   " << Block::toHex(b->getPrevHash()) << "\n";
+    std::cout << "  Version:     " << b->getVersion() << "\n";
+    std::cout << "  Timestamp:   " << b->getTimestamp() << "\n";
+    std::cout << "  Nonce:       " << b->getNonce() << "\n";
+    std::cout << "  Tx count:    " << b->getTransactions().size() << "\n";
+
+    if (with_txs) {
+        std::cout << "  Transactions:\n";
+        for (const auto& tx : b->getTransactions()) {
+            std::cout << "    " << tx.getSender() << " -> " << tx.getReceiver()
+                      << " : " << tx.getAmount()
+                      << " | tx_id=" << Block::toHex(tx.getId()) << "\n";
+        }
+    }
 }

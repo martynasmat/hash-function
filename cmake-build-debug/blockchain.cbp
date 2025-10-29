@@ -106,9 +106,6 @@
 		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.h">
 			<Option target="blockchain"/>
 		</Unit>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/user/User.cpp">
-			<Option target="blockchain"/>
-		</Unit>
 		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/user/User.h">
 			<Option target="blockchain"/>
 		</Unit>

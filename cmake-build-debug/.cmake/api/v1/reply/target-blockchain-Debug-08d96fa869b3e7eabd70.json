@@ -55,8 +55,7 @@
 				0,
 				1,
 				2,
-				5,
-				6
+				5
 			]
 		}
 	],
@@ -96,8 +95,7 @@
 				0,
 				1,
 				2,
-				5,
-				6
+				5
 			]
 		},
 		{
@@ -106,7 +104,7 @@
 			[
 				3,
 				4,
-				7
+				6
 			]
 		}
 	],
@@ -144,12 +142,6 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/blockchain/Blockchain.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/user/User.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

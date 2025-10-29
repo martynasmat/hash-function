@@ -63,6 +63,9 @@ public:
         return mempool.empty();
     }
 
+    void mineNextBlock();
+    const Block* getBlockByIndex(uint64_t index) const;
+
 private:
     vector<Transaction> getRandomTxs(int64_t count) {
         vector<Transaction> selected;
@@ -80,29 +83,4 @@ private:
 
         return selected;
     }
-
-    void mineNextBlock() {
-        vector<Transaction> txs = getRandomTxs(100);
-        if (txs.empty()) {
-            return;
-        }
-
-        array<uint8_t,16> prev_block_hash{};
-        if (head == nullptr) {
-            // Genesis block
-            prev_block_hash.fill(0);
-        } else {
-            prev_block_hash = head->block.getHash();
-        }
-
-        Block new_block(prev_block_hash, txs, difficulty);
-        new_block.mine();
-
-        HashPointer hp(prev_block_hash, head);
-        auto* new_node = new BlockNode(std::move(new_block), hp);
-        head = new_node;
-        block_count += 1;
-    }
-
-
 };

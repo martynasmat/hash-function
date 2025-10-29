@@ -11,6 +11,5 @@ add_executable(blockchain
         src/transaction/Transaction.cpp
         src/blockchain/Blockchain.h
         src/blockchain/Blockchain.cpp
-        src/user/User.cpp
         src/user/User.h
 )

@@ -7,8 +7,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/blockchain.dir/src/main.cpp.obj.d"
   "CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj"
   "CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj.d"
-  "CMakeFiles/blockchain.dir/src/user/User.cpp.obj"
-  "CMakeFiles/blockchain.dir/src/user/User.cpp.obj.d"
   "blockchain.exe"
   "blockchain.exe.manifest"
   "blockchain.pdb"
