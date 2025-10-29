@@ -69,21 +69,21 @@ kurioje saugomas naujas blokas bei praeito bloko ```HashPointer```. ```Blockchai
     Tx count:    100
     ```
   - n-tojo bloko grandinėje informaciją ir transakcijų sąrašą su ```showfull N```
-  ```
-  >showfull 4
+    ```
+    >showfull 4
 
-  Block 4
-  Hash:        000c837173c2fc19c43c8ad229abc384
-  Prev Hash:   000fc8fcd41d9b6fa733def3e527b11f
-  Version:     0.1
-  Timestamp:   1761772822
-  Nonce:       2334
-  Tx count:    100
-  Transactions:
-  public_key_931 -> public_key_249 : 86704 | tx_id=b6b1122446be9e0b7a8f762aa26cb1f4
-  public_key_791 -> public_key_748 : 44594 | tx_id=8bc3d859bdb2a67bdb9ae591785e0c51
-  ...
-  ```
+    Block 4
+    Hash:        000c837173c2fc19c43c8ad229abc384
+    Prev Hash:   000fc8fcd41d9b6fa733def3e527b11f
+    Version:     0.1
+    Timestamp:   1761772822
+    Nonce:       2334
+    Tx count:    100
+    Transactions:
+    public_key_931 -> public_key_249 : 86704 | tx_id=b6b1122446be9e0b7a8f762aa26cb1f4
+    public_key_791 -> public_key_748 : 44594 | tx_id=8bc3d859bdb2a67bdb9ae591785e0c51
+    ...
+    ```
 
 ### Iškastas blokas
 ```
