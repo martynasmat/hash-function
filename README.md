@@ -29,6 +29,62 @@ kurioje saugomas naujas blokas bei praeito bloko ```HashPointer```. ```Blockchai
 
 ## Komandinės eilutės sąsaja
 
+- Paleidus programą, sugeneruojama 1000 vartotojų ir 10000 transakcijų
+- Išvedama visų iškastų blokų informacija bei kiekvieno bloko transakcijų sąrašas
+- Atvaizduojama visa blokų grandinė, nuo genesis iki paskutinio bloko
+
+- Iškasus visus blokus, komandinės eilutės sąsajos pagalba galima sužinoti:
+  - blokų skaičių grandinėje su ```count```
+    ```
+    >count
+     
+    Blocks: 100
+    ```
+  - paskutinio bloko grandinėje informaciją su ```tip```
+    ```
+    >tip
+
+    Block 99
+    Hash:        000af8da6017a3ccbeea9a2481bd493d
+    Prev Hash:   000b90d629605342c9b424c1dc5a2e3f
+    Version:     0.1
+    Timestamp:   1761772829
+    Nonce:       8040
+    Tx count:    100
+    Transactions:
+    public_key_651 -> public_key_865 : 2335 | tx_id=1494b6cedb6732e240d8187f9e2e4c20
+    public_key_247 -> public_key_823 : 81983 | tx_id=2ff8d1ca52918e0bd79f7b2d540574c5
+    ...
+    ```
+  - n-tojo bloko grandinėje informaciją su ```show N```
+    ```
+    >show 4
+
+    Block 4
+    Hash:        000c837173c2fc19c43c8ad229abc384
+    Prev Hash:   000fc8fcd41d9b6fa733def3e527b11f
+    Version:     0.1
+    Timestamp:   1761772822
+    Nonce:       2334
+    Tx count:    100
+    ```
+  - n-tojo bloko grandinėje informaciją ir transakcijų sąrašą su ```showfull N```
+  ```
+  >showfull 4
+
+  Block 4
+  Hash:        000c837173c2fc19c43c8ad229abc384
+  Prev Hash:   000fc8fcd41d9b6fa733def3e527b11f
+  Version:     0.1
+  Timestamp:   1761772822
+  Nonce:       2334
+  Tx count:    100
+  Transactions:
+  public_key_931 -> public_key_249 : 86704 | tx_id=b6b1122446be9e0b7a8f762aa26cb1f4
+  public_key_791 -> public_key_748 : 44594 | tx_id=8bc3d859bdb2a67bdb9ae591785e0c51
+  ...
+  ```
+
 ### Iškastas blokas
 ```
 (+) BLOCK MINED
