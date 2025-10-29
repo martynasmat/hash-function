@@ -21,6 +21,9 @@ hash-function/blockchain/src/
 
 ## Blokų grandinės realizacija
 
+Blokų grandinė realizuota kaip ```BlockNode``` objektų susietas sąrašas, kur kiekvienas ```BlockNode``` saugo po ```Block```
+objektą ir ```HashPointer``` objektą, kuris rodo į praėjusį ```BlockNode``` ir saugo jo hash reikšmę.
+
 Sugeneruotos transakcijos saugomos ```blockchain/Blockchain.h``` faile aprašytame ```Blockchain``` klasės kintamajame ```mempool```.
 Kol mempool'e yra transakcijų, ```main.cpp``` faile kviečiama ```Blockchain.mineNextBlock()``` funkcija.
 ```mineNextBlock()``` funkcijoje iš mempool'o atsitiktinai išrenkama iki 100 transakcijų, apskaičiuojamas praeito bloko
