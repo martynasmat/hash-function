@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 
+using namepace std;
+
 string Block::toHex(const std::array<uint8_t, 16>& bytes) {
     // Converts array<uint8_t, 16> to hex, returns string
     static const char* hexDigits = "0123456789abcdef";
@@ -29,6 +31,7 @@ Block::Block(const std::array<uint8_t, 16>& prev_hash,
           transactions(txs)
 {
     hashRoot();
+    block_hash.fill(0);
 }
 
 void Block::hashRoot() {
@@ -64,4 +67,31 @@ array<uint8_t,16> Block::hashHeader() const {
     }
 
     return hasher.hash(buffer);
+}
+
+void Block::mine() {
+    nonce = 0;
+
+    while (true) {
+        array<uint8_t,16> hash_value = hashHeader();
+        string hash_value_hex = toHex(hash_value);
+
+        if (hash_value_hex.rfind(difficulty_target, 0) == 0) {
+            block_hash = hash_value;
+            break;
+        }
+
+        nonce++;
+    }
+
+    cout << "(+) BLOCK MINED\n";
+    cout << "Version:      " << version << "\n";
+    cout << "Timestamp:    " << timestamp << "\n";
+    cout << "Nonce:        " << nonce << "\n";
+    cout << "Difficulty:   " << difficulty_target << "\n";
+    cout << "Prev Block Hash:    " << toHex(prev_block_hash) << "\n";
+    cout << "Transactions Hash:    " << toHex(root_hash) << "\n";
+    cout << "Block Hash:   " << toHex(block_hash) << "\n";
+    cout << "Tx count:     " << transactions.size() << "\n";
+    cout << "=======================\n";
 }
