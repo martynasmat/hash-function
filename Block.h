@@ -1,9 +1,11 @@
+#pragma once
+
 #include <array>
 #include <string>
 #include <cstdint>
 #include "Transaction.h"
 #include <vector>
-#include <hashfunc.hpp>
+#include "hashfunc.hpp"
 
 using namespace std;
 
@@ -14,18 +16,16 @@ private:
     string version;
     uint64_t nonce;
     string difficulty_target;
-    array<uint8_t, 16> root_hash;
+    array<uint8_t, 16> root_hash{};
 
-    array<uint8_t, 16> block_hash;
+    array<uint8_t, 16> block_hash{};
 
     vector<Transaction> transactions;
-
-    Hasher hasher;
 
 public:
     Block(const array<uint8_t, 16>& prev_hash,
           const vector<Transaction>& txs,
-          const string& diff_target);
+          string  diff_target);
 
     void mine();
 
@@ -61,5 +61,5 @@ public:
 
 private:
     array<uint8_t,16> hashHeader();
-    array<uint8_t,16> hashRoot();
+    void hashRoot();
 };

@@ -1,9 +1,10 @@
 #include "Block.h"
 #include <ctime>
+#include <utility>
 #include <vector>
 #include <iostream>
 
-using namepace std;
+using namespace std;
 
 string Block::toHex(const std::array<uint8_t, 16>& bytes) {
     // Converts array<uint8_t, 16> to hex, returns string
@@ -20,14 +21,14 @@ string Block::toHex(const std::array<uint8_t, 16>& bytes) {
     return out;
 }
 
-Block::Block(const std::array<uint8_t, 16>& prev_hash,
-             const std::vector<Transaction>& txs,
-             const std::string& diff_target)
+Block::Block(const array<uint8_t, 16>& prev_hash,
+             const vector<Transaction>& txs,
+             string  diff_target)
         : prev_block_hash(prev_hash),
           timestamp(static_cast<uint64_t>(time(nullptr))),
           version("0.1"),
           nonce(0),
-          difficulty_target(diff_target),
+          difficulty_target(std::move(diff_target)),
           transactions(txs)
 {
     hashRoot();
@@ -46,12 +47,12 @@ void Block::hashRoot() {
         buf.push_back(0);
     }
 
-    root_hash = hasher.hash(buf);
+    root_hash = Hasher::hash(buf);
 }
 
 
-array<uint8_t,16> Block::hashHeader() const {
-    string data = "";
+array<uint8_t,16> Block::hashHeader()  {
+    string data;
 
     data += toHex(prev_block_hash);
     data += std::to_string(timestamp);
@@ -66,7 +67,7 @@ array<uint8_t,16> Block::hashHeader() const {
         buffer.push_back(static_cast<uint8_t>(c));
     }
 
-    return hasher.hash(buffer);
+    return Hasher::hash(buffer);
 }
 
 void Block::mine() {
@@ -92,6 +93,5 @@ void Block::mine() {
     cout << "Prev Block Hash:    " << toHex(prev_block_hash) << "\n";
     cout << "Transactions Hash:    " << toHex(root_hash) << "\n";
     cout << "Block Hash:   " << toHex(block_hash) << "\n";
-    cout << "Tx count:     " << transactions.size() << "\n";
-    cout << "=======================\n";
+    cout << "Tx count:     " << transactions.size() << "\n\n";
 }

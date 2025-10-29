@@ -1,6 +1,9 @@
+#pragma once
+
 #include <string>
 #include <array>
 #include <cstdint>
+#include "hashfunc.hpp"
 
 using namespace std;
 
@@ -10,6 +13,8 @@ private:
     string receiver;
     int64_t amount;
     array<uint8_t, 16> transaction_id;
+
+    Hasher hasher;
 
 public:
     Transaction(const string& sender,
