@@ -43,6 +43,7 @@ private:
     BlockNode* head;
     string difficulty;
     size_t block_count;
+    vector<Transaction> mempool;
 
 public:
     explicit Blockchain(string  diff)
@@ -57,4 +58,12 @@ public:
     void printChain() const;
 
     size_t getCount() const { return block_count; }
+
+    void loadIntoMempool(const std::vector<Transaction>& txs) {
+        mempool = txs;
+    }
+
+    bool isMempoolEmpty() const {
+        return mempool.empty();
+    }
 };
