@@ -1,8 +1,8 @@
 #include <vector>
 #include <array>
 
-#include "Transaction.h"
-#include "Block.h"
+#include "transaction/Transaction.h"
+#include "block/Block.h"
 
 using namespace std;
 

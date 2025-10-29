@@ -4,9 +4,10 @@ project(blockchain)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(blockchain
-        main.cpp
-        Block.cpp
-        Transaction.cpp
-        hashfunc.hpp
-        Transaction.cpp
+        src/main.cpp
+        src/block/Block.cpp
+        src/transaction/Transaction.cpp
+        src/hasher/hashfunc.hpp
+        src/transaction/Transaction.cpp
+        src/blockchain/blockchain.h
 )

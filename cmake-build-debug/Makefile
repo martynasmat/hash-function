@@ -128,77 +128,77 @@ blockchain/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/build
 .PHONY : blockchain/fast
 
-Block.obj: Block.cpp.obj
-.PHONY : Block.obj
+src/block/Block.obj: src/block/Block.cpp.obj
+.PHONY : src/block/Block.obj
 
 # target to build an object file
-Block.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/Block.cpp.obj
-.PHONY : Block.cpp.obj
+src/block/Block.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/block/Block.cpp.obj
+.PHONY : src/block/Block.cpp.obj
 
-Block.i: Block.cpp.i
-.PHONY : Block.i
+src/block/Block.i: src/block/Block.cpp.i
+.PHONY : src/block/Block.i
 
 # target to preprocess a source file
-Block.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/Block.cpp.i
-.PHONY : Block.cpp.i
+src/block/Block.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/block/Block.cpp.i
+.PHONY : src/block/Block.cpp.i
 
-Block.s: Block.cpp.s
-.PHONY : Block.s
+src/block/Block.s: src/block/Block.cpp.s
+.PHONY : src/block/Block.s
 
 # target to generate assembly for a file
-Block.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/Block.cpp.s
-.PHONY : Block.cpp.s
+src/block/Block.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/block/Block.cpp.s
+.PHONY : src/block/Block.cpp.s
 
-Transaction.obj: Transaction.cpp.obj
-.PHONY : Transaction.obj
+src/main.obj: src/main.cpp.obj
+.PHONY : src/main.obj
 
 # target to build an object file
-Transaction.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/Transaction.cpp.obj
-.PHONY : Transaction.cpp.obj
+src/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/main.cpp.obj
+.PHONY : src/main.cpp.obj
 
-Transaction.i: Transaction.cpp.i
-.PHONY : Transaction.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-Transaction.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/Transaction.cpp.i
-.PHONY : Transaction.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-Transaction.s: Transaction.cpp.s
-.PHONY : Transaction.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-Transaction.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/Transaction.cpp.s
-.PHONY : Transaction.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
+src/transaction/Transaction.obj: src/transaction/Transaction.cpp.obj
+.PHONY : src/transaction/Transaction.obj
 
 # target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/main.cpp.obj
-.PHONY : main.cpp.obj
+src/transaction/Transaction.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj
+.PHONY : src/transaction/Transaction.cpp.obj
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/transaction/Transaction.i: src/transaction/Transaction.cpp.i
+.PHONY : src/transaction/Transaction.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/transaction/Transaction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.i
+.PHONY : src/transaction/Transaction.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/transaction/Transaction.s: src/transaction/Transaction.cpp.s
+.PHONY : src/transaction/Transaction.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/transaction/Transaction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\blockchain.dir\build.make CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.s
+.PHONY : src/transaction/Transaction.cpp.s
 
 # Help Target
 help:
@@ -209,15 +209,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... blockchain
-	@echo ... Block.obj
-	@echo ... Block.i
-	@echo ... Block.s
-	@echo ... Transaction.obj
-	@echo ... Transaction.i
-	@echo ... Transaction.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... src/block/Block.obj
+	@echo ... src/block/Block.i
+	@echo ... src/block/Block.s
+	@echo ... src/main.obj
+	@echo ... src/main.i
+	@echo ... src/main.s
+	@echo ... src/transaction/Transaction.obj
+	@echo ... src/transaction/Transaction.i
+	@echo ... src/transaction/Transaction.s
 .PHONY : help
 
 

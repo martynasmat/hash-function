@@ -94,4 +94,11 @@ void Block::mine() {
     cout << "Transactions Hash:    " << toHex(root_hash) << "\n";
     cout << "Block Hash:   " << toHex(block_hash) << "\n";
     cout << "Tx count:     " << transactions.size() << "\n\n";
+
+    cout << "Transactions:\n";
+    for (const auto& tx : transactions) {
+        cout << tx.getSender() << " -> "
+             << tx.getReceiver() << " amt: " << tx.getAmount()
+             << " coins / id=" << Block::toHex(tx.getId()) << "\n";
+    }
 }

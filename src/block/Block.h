@@ -3,9 +3,9 @@
 #include <array>
 #include <string>
 #include <cstdint>
-#include "Transaction.h"
+#include "../transaction/Transaction.h"
 #include <vector>
-#include "hashfunc.hpp"
+#include "../hasher/hashfunc.hpp"
 
 using namespace std;
 

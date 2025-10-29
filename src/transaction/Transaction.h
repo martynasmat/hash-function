@@ -3,7 +3,7 @@
 #include <string>
 #include <array>
 #include <cstdint>
-#include "hashfunc.hpp"
+#include "../hasher/hashfunc.hpp"
 
 using namespace std;
 

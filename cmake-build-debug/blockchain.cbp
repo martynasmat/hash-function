@@ -82,22 +82,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/Block.cpp">
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/block/Block.cpp">
 			<Option target="blockchain"/>
 		</Unit>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/Block.h">
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/block/Block.h">
 			<Option target="blockchain"/>
 		</Unit>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/Transaction.cpp">
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/blockchain/blockchain.h">
 			<Option target="blockchain"/>
 		</Unit>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/Transaction.h">
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/hasher/hashfunc.hpp">
 			<Option target="blockchain"/>
 		</Unit>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/hashfunc.hpp">
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/main.cpp">
 			<Option target="blockchain"/>
 		</Unit>
-		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/main.cpp">
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.cpp">
+			<Option target="blockchain"/>
+		</Unit>
+		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.h">
 			<Option target="blockchain"/>
 		</Unit>
 		<Unit filename="C:/Users/marty/Desktop/blockchain/hash-function/CMakeLists.txt">
