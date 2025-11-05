@@ -92,3 +92,20 @@ void Blockchain::setBalances(const vector<User>& users) {
         balances[usr.public_key] = usr.balance;
     }
 }
+
+array<uint8_t, 16> rehashTransaction(const Transaction& tx) {
+    string data;
+    data.clear();
+
+    data += tx.getSender();
+    data += tx.getReceiver();
+    data += to_string(tx.getAmount());
+
+    vector<uint8_t> buffer;
+    for (char c : data) {
+        buffer.push_back(static_cast<uint8_t>(c));
+    }
+
+    array<uint8_t, 16> transaction_id = Hasher::hash(buffer);
+    return transaction_id;
+}

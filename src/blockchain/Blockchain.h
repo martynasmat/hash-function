@@ -59,6 +59,7 @@ public:
     void mineNextBlock();
     const Block* getBlockByIndex(uint64_t index) const;
     void setBalances(const vector<User>& users);
+    array<uint8_t, 16> rehashTransaction(const Transaction& tx);
 
 private:
     vector<Transaction> getRandomTxs(int64_t count) {
