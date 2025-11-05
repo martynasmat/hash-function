@@ -65,7 +65,14 @@ public:
     void setBalances(const vector<User>& users);
 
 private:
+    struct Candidate {
+        vector<Transaction> transactions;
+        unordered_map<string, int64_t> balances_after;
+    };
+
     static array<uint8_t, 16> rehashTransaction(const Transaction& tx);
     vector<Transaction> getValidTxs(int64_t count);
     bool isOverspend(const Transaction& tx);
+    static Candidate buildCandidate(vector<Transaction>& mempool_snapshot,
+                             unordered_map<string, int64_t> balances_snapshot);
 };

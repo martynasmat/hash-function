@@ -112,6 +112,38 @@ bool Blockchain::isOverspend(const Transaction& tx) {
     return working_balances[tx.getSender()] < tx.getAmount();
 }
 
+Blockchain::Candidate Blockchain::buildCandidate(vector<Transaction>& mempool_snapshot,
+                                                 unordered_map<string, int64_t> balances_snapshot) {
+    Candidate candidate;
+    candidate.transactions.reserve(100);
+
+    std::random_device rd;
+    std::mt19937_64 rng(rd());
+
+    while (!mempool_snapshot.empty() && candidate.transactions.size() < 100) {
+        std::uniform_int_distribution<size_t> dist(0, mempool_snapshot.size() - 1);
+        size_t index = dist(rng);
+        Transaction tx = mempool_snapshot[index];
+        mempool_snapshot[index] = mempool_snapshot.back();
+        mempool_snapshot.pop_back();
+
+        if (rehashTransaction(tx) != tx.getId()) {
+            continue;
+        }
+
+        if (balances_snapshot[tx.getSender()] < tx.getAmount()) {
+            continue;
+        }
+
+        balances_snapshot[tx.getSender()] -= tx.getAmount();
+        balances_snapshot[tx.getReceiver()] += tx.getAmount();
+        candidate.transactions.push_back(tx);
+    }
+
+    candidate.balances_after = std::move(balances_snapshot);
+    return candidate;
+}
+
 vector<Transaction> Blockchain::getValidTxs(int64_t count) {
     // Get 100 valid transactions from mempool, discard invalid
     vector<Transaction> selected;
