@@ -1,5 +1,7 @@
 #include "Blockchain.h"
 #include "../user/User.h"
+#include <unordered_set>
+#include <algorithm>
 
 using namespace std;
 
@@ -19,6 +21,7 @@ void Blockchain::mineNextBlock() {
     vector<Transaction> mempool_snapshot = mempool;
     unordered_map<string, int64_t> balances_snapshot = balances;
 
+    // Create 5 candidate blocks
     vector<Candidate> candidates;
     candidates.reserve(5);
 
@@ -30,7 +33,44 @@ void Blockchain::mineNextBlock() {
     }
 
     if (candidates.empty()) {
+        rejected_txs.insert(rejected_txs.end(), mempool.begin(), mempool.end());
+        mempool.clear();
+        working_balances = balances;
         return;
+    }
+
+    uint64_t attempt_window_ms = 5000;
+
+    // Attempt to mine candidate blocks
+    while (true) {
+        for (size_t idx = 0; idx < candidates.size(); ++idx) {
+            Block block(prev_block_hash, candidates[idx].transactions, difficulty);
+            if (!block.mine(attempt_window_ms)) {
+                continue;
+            }
+
+            unordered_set<string> mined_ids;
+            mined_ids.reserve(candidates[idx].transactions.size());
+            for (const auto& tx : candidates[idx].transactions) {
+                mined_ids.insert(Block::toHex(tx.getId()));
+            }
+
+            auto new_end = remove_if(mempool.begin(), mempool.end(), [&](const Transaction& tx) {
+                return mined_ids.count(Block::toHex(tx.getId())) > 0;
+            });
+            mempool.erase(new_end, mempool.end());
+
+            balances = candidates[idx].balances_after;
+            working_balances = balances;
+
+            HashPointer hp(prev_block_hash, head);
+            auto* new_node = new BlockNode(std::move(block), hp);
+            head = new_node;
+            block_count++;
+            return;
+        }
+
+        attempt_window_ms += 5000;
     }
 }
 

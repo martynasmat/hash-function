@@ -24,11 +24,15 @@ hash-function/blockchain/src/
 Blokų grandinė realizuota kaip ```BlockNode``` objektų susietas sąrašas, kur kiekvienas ```BlockNode``` saugo po ```Block```
 objektą ir ```HashPointer``` objektą, kuris rodo į praėjusį ```BlockNode``` ir saugo jo hash reikšmę.
 
-Sugeneruotos transakcijos saugomos ```blockchain/Blockchain.h``` faile aprašytame ```Blockchain``` klasės kintamajame ```mempool```.
+Sugeneruotos transakcijos saugomos ```blockchain/Blockchain.h``` faile aprašytos ```Blockchain``` klasės kintamajame ```mempool```.
 Kol mempool'e yra transakcijų, ```main.cpp``` faile kviečiama ```Blockchain.mineNextBlock()``` funkcija.
-```mineNextBlock()``` funkcijoje iš mempool'o atsitiktinai išrenkama iki 100 transakcijų, apskaičiuojamas praeito bloko
-hash'as (genesis bloko atveju užpildoma 0) ir sukuriamas naujas blokas. Iškasus bloką, sukuriamas ```BlockNode``` objektas,
-kuriame saugomas naujas blokas bei praeito bloko ```HashPointer```. ```Blockchain.head``` nurodomas į naują ```BlockNode```.
+
+Sukuriami 5 kandidatiniai blokai, į kuriuos atsitiktinai sudedama po 100 transakcijų, kurių iš naujo apskaičiuoti
+hash'ai sutampa su ```Transaction.transaction_id``` ir kuriose siunčiamas kiekis neviršija siuntėjo turimo balanso.
+```mineNextBlock()``` apskaičiuojamas praeito bloko hash'as (genesis bloko atveju užpildoma 0) ir bandoma kasti kiekvieną iš kandidatinių blokų
+5 sekundes. Iškasus bloką, sukuriamas ```BlockNode``` objektas, kuriame saugomas naujas blokas bei praeito bloko ```HashPointer```.
+```Blockchain.head``` nurodomas į naują ```BlockNode```. Į ```Blockchain.balances``` perkeliami nauji, po iškasto bloko transakcijų pasikeitę, balansai.
+Kitu atveju, kasimo laikas padidinamas 5 sekundėmis.
 
 ## Komandinės eilutės sąsaja
 
@@ -129,4 +133,13 @@ Block no. 0:
   Tx Count:     100
   HashPointer.prev_block_ptr:  nullptr
   HashPointer.prev_block_hash: 00000000000000000000000000000000
-  ```
+```
+
+### Į blokus nepatekusių transakcijų skaičius
+```
+301 transactions rejected
+```
+
+### AI pagalba
+AI įrankiais naudojaus, kad "pagražinti" kodą, bei įsigilinti į kai kuriuos konceptus, kurių implementavimo iš karto nepavyko suprasti
+(pvz. Merkle Tree). Taip pat, AI pagelbėjo su laiko matavimu kandidatinių blokų kasimo dalyje.

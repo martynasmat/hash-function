@@ -208,4 +208,8 @@ CMakeFiles/blockchain.dir/src/block/Block.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/x86_64-w64-mingw32/include/string.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
- C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h
+ C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/chrono \
+ C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/chrono.h \
+ C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ratio \
+ C:/Program\ Files/JetBrains/CLion\ 2023.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/parse_numbers.h

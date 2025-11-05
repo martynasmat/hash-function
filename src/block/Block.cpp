@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector>
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -95,8 +96,9 @@ array<uint8_t,16> Block::hashHeader()  {
     return Hasher::hash(buffer);
 }
 
-void Block::mine() {
+bool Block::mine(uint64_t max_milliseconds) {
     nonce = 0;
+    auto start = chrono::steady_clock::now();
 
     while (true) {
         array<uint8_t,16> hash_value = hashHeader();
@@ -104,28 +106,37 @@ void Block::mine() {
 
         if (hash_value_hex.rfind(difficulty_target, 0) == 0) {
             block_hash = hash_value;
-            break;
+
+            cout << "(+) BLOCK MINED\n";
+            cout << "Version:      " << version << "\n";
+            cout << "Timestamp:    " << timestamp << "\n";
+            cout << "Nonce:        " << nonce << "\n";
+            cout << "Difficulty:   " << difficulty_target << "\n";
+            cout << "Prev Block Hash:    " << toHex(prev_block_hash) << "\n";
+            cout << "Merkle Root:    " << toHex(root_hash) << "\n";
+            cout << "Block Hash:   " << toHex(block_hash) << "\n";
+            cout << "Tx count:     " << transactions.size() << "\n";
+            cout << "Time mined:   " << chrono::duration_cast<chrono::milliseconds>(
+                    chrono::steady_clock::now() - start).count() << "ms \n\n";
+
+            cout << "Transactions:\n";
+            for (const auto& tx : transactions) {
+                cout << tx.getSender() << " -> "
+                     << tx.getReceiver() << " amt: " << tx.getAmount()
+                     << " coins / id=" << Block::toHex(tx.getId()) << "\n";
+            }
+
+            cout << "\n\n";
+
+            return true;
         }
 
         nonce++;
+
+        auto elapsed = chrono::duration_cast<chrono::milliseconds>(
+                chrono::steady_clock::now() - start);
+        if (elapsed.count() >= static_cast<int64_t>(max_milliseconds)) {
+            return false;
+        }
     }
-
-    cout << "(+) BLOCK MINED\n";
-    cout << "Version:      " << version << "\n";
-    cout << "Timestamp:    " << timestamp << "\n";
-    cout << "Nonce:        " << nonce << "\n";
-    cout << "Difficulty:   " << difficulty_target << "\n";
-    cout << "Prev Block Hash:    " << toHex(prev_block_hash) << "\n";
-    cout << "Merkle Root:    " << toHex(root_hash) << "\n";
-    cout << "Block Hash:   " << toHex(block_hash) << "\n";
-    cout << "Tx count:     " << transactions.size() << "\n\n";
-
-    cout << "Transactions:\n";
-    for (const auto& tx : transactions) {
-        cout << tx.getSender() << " -> "
-             << tx.getReceiver() << " amt: " << tx.getAmount()
-             << " coins / id=" << Block::toHex(tx.getId()) << "\n";
-    }
-
-    cout << "\n\n";
 }

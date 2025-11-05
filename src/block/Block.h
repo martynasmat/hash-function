@@ -27,7 +27,7 @@ public:
           const vector<Transaction>& txs,
           string  diff_target);
 
-    void mine();
+    bool mine(uint64_t max_milliseconds);
 
     static string toHex(const array<uint8_t, 16>& bytes);
 
