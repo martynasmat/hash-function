@@ -26,7 +26,7 @@ Block::Block(const array<uint8_t, 16>& prev_hash,
              string  diff_target)
         : prev_block_hash(prev_hash),
           timestamp(static_cast<uint64_t>(time(nullptr))),
-          version("0.1"),
+          version("0.2"),
           nonce(0),
           difficulty_target(std::move(diff_target)),
           transactions(txs)

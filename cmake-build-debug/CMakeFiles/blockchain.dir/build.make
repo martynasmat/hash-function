@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\marty\Desktop\blockchain\hash-function
+CMAKE_SOURCE_DIR = "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/blockchain.dir/depend.make
@@ -69,60 +69,60 @@ include CMakeFiles/blockchain.dir/progress.make
 include CMakeFiles/blockchain.dir/flags.make
 
 CMakeFiles/blockchain.dir/src/main.cpp.obj: CMakeFiles/blockchain.dir/flags.make
-CMakeFiles/blockchain.dir/src/main.cpp.obj: C:/Users/marty/Desktop/blockchain/hash-function/src/main.cpp
+CMakeFiles/blockchain.dir/src/main.cpp.obj: C:/Users/marty/Desktop/univero\ nesamones/BGT/blockchain/hash-function/src/main.cpp
 CMakeFiles/blockchain.dir/src/main.cpp.obj: CMakeFiles/blockchain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/blockchain.dir/src/main.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/main.cpp.obj -MF CMakeFiles\blockchain.dir\src\main.cpp.obj.d -o CMakeFiles\blockchain.dir\src\main.cpp.obj -c C:\Users\marty\Desktop\blockchain\hash-function\src\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/blockchain.dir/src/main.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/main.cpp.obj -MF CMakeFiles\blockchain.dir\src\main.cpp.obj.d -o CMakeFiles\blockchain.dir\src\main.cpp.obj -c "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\main.cpp"
 
 CMakeFiles/blockchain.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/blockchain.dir/src/main.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marty\Desktop\blockchain\hash-function\src\main.cpp > CMakeFiles\blockchain.dir\src\main.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\main.cpp" > CMakeFiles\blockchain.dir\src\main.cpp.i
 
 CMakeFiles/blockchain.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/blockchain.dir/src/main.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marty\Desktop\blockchain\hash-function\src\main.cpp -o CMakeFiles\blockchain.dir\src\main.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\main.cpp" -o CMakeFiles\blockchain.dir\src\main.cpp.s
 
 CMakeFiles/blockchain.dir/src/block/Block.cpp.obj: CMakeFiles/blockchain.dir/flags.make
-CMakeFiles/blockchain.dir/src/block/Block.cpp.obj: C:/Users/marty/Desktop/blockchain/hash-function/src/block/Block.cpp
+CMakeFiles/blockchain.dir/src/block/Block.cpp.obj: C:/Users/marty/Desktop/univero\ nesamones/BGT/blockchain/hash-function/src/block/Block.cpp
 CMakeFiles/blockchain.dir/src/block/Block.cpp.obj: CMakeFiles/blockchain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/blockchain.dir/src/block/Block.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/block/Block.cpp.obj -MF CMakeFiles\blockchain.dir\src\block\Block.cpp.obj.d -o CMakeFiles\blockchain.dir\src\block\Block.cpp.obj -c C:\Users\marty\Desktop\blockchain\hash-function\src\block\Block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/blockchain.dir/src/block/Block.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/block/Block.cpp.obj -MF CMakeFiles\blockchain.dir\src\block\Block.cpp.obj.d -o CMakeFiles\blockchain.dir\src\block\Block.cpp.obj -c "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\block\Block.cpp"
 
 CMakeFiles/blockchain.dir/src/block/Block.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/blockchain.dir/src/block/Block.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marty\Desktop\blockchain\hash-function\src\block\Block.cpp > CMakeFiles\blockchain.dir\src\block\Block.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\block\Block.cpp" > CMakeFiles\blockchain.dir\src\block\Block.cpp.i
 
 CMakeFiles/blockchain.dir/src/block/Block.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/blockchain.dir/src/block/Block.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marty\Desktop\blockchain\hash-function\src\block\Block.cpp -o CMakeFiles\blockchain.dir\src\block\Block.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\block\Block.cpp" -o CMakeFiles\blockchain.dir\src\block\Block.cpp.s
 
 CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj: CMakeFiles/blockchain.dir/flags.make
-CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj: C:/Users/marty/Desktop/blockchain/hash-function/src/transaction/Transaction.cpp
+CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj: C:/Users/marty/Desktop/univero\ nesamones/BGT/blockchain/hash-function/src/transaction/Transaction.cpp
 CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj: CMakeFiles/blockchain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj -MF CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.obj.d -o CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.obj -c C:\Users\marty\Desktop\blockchain\hash-function\src\transaction\Transaction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.obj -MF CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.obj.d -o CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.obj -c "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\transaction\Transaction.cpp"
 
 CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marty\Desktop\blockchain\hash-function\src\transaction\Transaction.cpp > CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\transaction\Transaction.cpp" > CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.i
 
 CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/blockchain.dir/src/transaction/Transaction.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marty\Desktop\blockchain\hash-function\src\transaction\Transaction.cpp -o CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\transaction\Transaction.cpp" -o CMakeFiles\blockchain.dir\src\transaction\Transaction.cpp.s
 
 CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj: CMakeFiles/blockchain.dir/flags.make
-CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj: C:/Users/marty/Desktop/blockchain/hash-function/src/blockchain/Blockchain.cpp
+CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj: C:/Users/marty/Desktop/univero\ nesamones/BGT/blockchain/hash-function/src/blockchain/Blockchain.cpp
 CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj: CMakeFiles/blockchain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj -MF CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.obj.d -o CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.obj -c C:\Users\marty\Desktop\blockchain\hash-function\src\blockchain\Blockchain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.obj -MF CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.obj.d -o CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.obj -c "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\blockchain\Blockchain.cpp"
 
 CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marty\Desktop\blockchain\hash-function\src\blockchain\Blockchain.cpp > CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\blockchain\Blockchain.cpp" > CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.i
 
 CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/blockchain.dir/src/blockchain/Blockchain.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marty\Desktop\blockchain\hash-function\src\blockchain\Blockchain.cpp -o CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\src\blockchain\Blockchain.cpp" -o CMakeFiles\blockchain.dir\src\blockchain\Blockchain.cpp.s
 
 # Object files for target blockchain
 blockchain_OBJECTS = \
@@ -142,7 +142,7 @@ blockchain.exe: CMakeFiles/blockchain.dir/build.make
 blockchain.exe: CMakeFiles/blockchain.dir/linkLibs.rsp
 blockchain.exe: CMakeFiles/blockchain.dir/objects1.rsp
 blockchain.exe: CMakeFiles/blockchain.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable blockchain.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable blockchain.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\blockchain.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -154,6 +154,6 @@ CMakeFiles/blockchain.dir/clean:
 .PHONY : CMakeFiles/blockchain.dir/clean
 
 CMakeFiles/blockchain.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\marty\Desktop\blockchain\hash-function C:\Users\marty\Desktop\blockchain\hash-function C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug C:\Users\marty\Desktop\blockchain\hash-function\cmake-build-debug\CMakeFiles\blockchain.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function" "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function" "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug" "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug" "C:\Users\marty\Desktop\univero nesamones\BGT\blockchain\hash-function\cmake-build-debug\CMakeFiles\blockchain.dir\DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : CMakeFiles/blockchain.dir/depend
 
