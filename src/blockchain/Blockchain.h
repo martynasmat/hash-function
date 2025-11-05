@@ -37,6 +37,7 @@ private:
     size_t block_count;
     vector<Transaction> mempool;
     unordered_map<string, int64_t> balances;
+    unordered_map<string, int64_t> working_balances;
 
 public:
     explicit Blockchain(string  diff)
@@ -63,4 +64,5 @@ public:
 private:
     static array<uint8_t, 16> rehashTransaction(const Transaction& tx);
     vector<Transaction> getValidTxs(int64_t count);
+    bool isOverspend(const Transaction& tx);
 };

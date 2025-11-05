@@ -30,6 +30,7 @@ int main() {
 
     Blockchain blockchain("000");
     blockchain.loadIntoMempool(transactions);
+    blockchain.setBalances(users);
 
     while (!blockchain.isMempoolEmpty()) {
         blockchain.mineNextBlock();

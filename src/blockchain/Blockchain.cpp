@@ -1,7 +1,4 @@
-#pragma once
-
 #include "Blockchain.h"
-#include <random>
 #include "../user/User.h"
 
 using namespace std;
@@ -22,6 +19,7 @@ void Blockchain::mineNextBlock() {
 
     Block new_block(prev_block_hash, txs, difficulty);
     new_block.mine();
+    balances = std::move(working_balances);
 
     HashPointer hp(prev_block_hash, head);
     auto* new_node = new BlockNode(std::move(new_block), hp);
@@ -110,14 +108,22 @@ array<uint8_t, 16> Blockchain::rehashTransaction(const Transaction& tx) {
     return transaction_id;
 }
 
+bool Blockchain::isOverspend(const Transaction& tx) {
+    return working_balances[tx.getSender()] < tx.getAmount();
+}
+
 vector<Transaction> Blockchain::getValidTxs(int64_t count) {
     // Get 100 valid transactions from mempool, discard invalid
     vector<Transaction> selected;
+    working_balances = balances;
     if (mempool.empty()) return selected;
 
     while (selected.size() < count && !mempool.empty()) {
         Transaction candidate_tx = mempool.back();
-        if (rehashTransaction(candidate_tx) == candidate_tx.getId()) {
+        if (rehashTransaction(candidate_tx) == candidate_tx.getId()
+            && !isOverspend(candidate_tx)) {
+            working_balances[candidate_tx.getSender()] -= candidate_tx.getAmount();
+            working_balances[candidate_tx.getReceiver()] += candidate_tx.getAmount();
             selected.push_back(candidate_tx);
         }
         mempool.pop_back();
