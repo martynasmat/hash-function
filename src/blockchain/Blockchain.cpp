@@ -4,8 +4,7 @@
 using namespace std;
 
 void Blockchain::mineNextBlock() {
-    vector<Transaction> txs = getValidTxs(100);
-    if (txs.empty()) {
+    if (mempool.empty()) {
         return;
     }
 
@@ -17,14 +16,22 @@ void Blockchain::mineNextBlock() {
         prev_block_hash = head->block.getHash();
     }
 
-    Block new_block(prev_block_hash, txs, difficulty);
-    new_block.mine();
-    balances = std::move(working_balances);
+    vector<Transaction> mempool_snapshot = mempool;
+    unordered_map<string, int64_t> balances_snapshot = balances;
 
-    HashPointer hp(prev_block_hash, head);
-    auto* new_node = new BlockNode(std::move(new_block), hp);
-    head = new_node;
-    block_count += 1;
+    vector<Candidate> candidates;
+    candidates.reserve(5);
+
+    for (size_t i = 0; i < 5 && !mempool_snapshot.empty(); ++i) {
+        Candidate candidate = buildCandidate(mempool_snapshot, balances_snapshot);
+        if (!candidate.transactions.empty()) {
+            candidates.push_back(std::move(candidate));
+        }
+    }
+
+    if (candidates.empty()) {
+        return;
+    }
 }
 
 const Block* Blockchain::getBlockByIndex(uint64_t index) const {
