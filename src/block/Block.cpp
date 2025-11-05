@@ -91,7 +91,7 @@ void Block::mine() {
     cout << "Nonce:        " << nonce << "\n";
     cout << "Difficulty:   " << difficulty_target << "\n";
     cout << "Prev Block Hash:    " << toHex(prev_block_hash) << "\n";
-    cout << "Transactions Hash:    " << toHex(root_hash) << "\n";
+    cout << "Merkle Root:    " << toHex(root_hash) << "\n";
     cout << "Block Hash:   " << toHex(block_hash) << "\n";
     cout << "Tx count:     " << transactions.size() << "\n\n";
 
