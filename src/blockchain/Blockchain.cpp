@@ -7,7 +7,7 @@
 using namespace std;
 
 void Blockchain::mineNextBlock() {
-    vector<Transaction> txs = getRandomTxs(100);
+    vector<Transaction> txs = getValidTxs(100);
     if (txs.empty()) {
         return;
     }
@@ -93,7 +93,7 @@ void Blockchain::setBalances(const vector<User>& users) {
     }
 }
 
-array<uint8_t, 16> rehashTransaction(const Transaction& tx) {
+array<uint8_t, 16> Blockchain::rehashTransaction(const Transaction& tx) {
     string data;
     data.clear();
 
@@ -108,4 +108,20 @@ array<uint8_t, 16> rehashTransaction(const Transaction& tx) {
 
     array<uint8_t, 16> transaction_id = Hasher::hash(buffer);
     return transaction_id;
+}
+
+vector<Transaction> Blockchain::getValidTxs(int64_t count) {
+    // Get 100 valid transactions from mempool, discard invalid
+    vector<Transaction> selected;
+    if (mempool.empty()) return selected;
+
+    while (selected.size() < count && !mempool.empty()) {
+        Transaction candidate_tx = mempool.back();
+        if (rehashTransaction(candidate_tx) == candidate_tx.getId()) {
+            selected.push_back(candidate_tx);
+        }
+        mempool.pop_back();
+    }
+
+    return selected;
 }
