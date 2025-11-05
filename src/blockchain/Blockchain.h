@@ -36,6 +36,7 @@ private:
     string difficulty;
     size_t block_count;
     vector<Transaction> mempool;
+    vector<Transaction> rejected_txs;
     unordered_map<string, int64_t> balances;
     unordered_map<string, int64_t> working_balances;
 

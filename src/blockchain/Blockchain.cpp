@@ -125,6 +125,8 @@ vector<Transaction> Blockchain::getValidTxs(int64_t count) {
             working_balances[candidate_tx.getSender()] -= candidate_tx.getAmount();
             working_balances[candidate_tx.getReceiver()] += candidate_tx.getAmount();
             selected.push_back(candidate_tx);
+        } else {
+            rejected_txs.push_back(candidate_tx);
         }
         mempool.pop_back();
     }
