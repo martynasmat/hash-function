@@ -50,6 +50,8 @@ public:
 
     size_t getCount() const { return block_count; }
 
+    vector<Transaction> getRejected() const { return rejected_txs; }
+
     void loadIntoMempool(const std::vector<Transaction>& txs) {
         mempool = txs;
     }

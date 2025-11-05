@@ -38,6 +38,8 @@ int main() {
 
     blockchain.printChain();
 
+    cout << blockchain.getRejected().size() << " transactions rejected" << endl;
+
     runCli(blockchain);
 
     return 0;
@@ -62,7 +64,7 @@ vector<User> generateUsers(size_t count) {
 
 vector<Transaction> generateTransactions(vector<User>& u, size_t count) {
     vector<Transaction> txs;
-    mt19937_64 rng(251029);
+    mt19937_64 rng(259);
     uniform_int_distribution<size_t> userDist(0, u.size() - 1);
     uniform_int_distribution<int64_t> amtDist(100, 100000);
 
