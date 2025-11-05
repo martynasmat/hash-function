@@ -36,18 +36,43 @@ Block::Block(const array<uint8_t, 16>& prev_hash,
 }
 
 void Block::hashRoot() {
-    vector<uint8_t> buf;
+    vector<array<uint8_t,16>> leaves;
+    leaves.reserve(transactions.size());
 
     for (const auto& tx : transactions) {
-        const array<uint8_t,16>& tx_id = tx.getId();
-        buf.insert(buf.end(), tx_id.begin(), tx_id.end());
+        leaves.push_back(tx.getId());
     }
 
-    if (buf.empty()) {
-        buf.push_back(0);
+    // No transactions
+    if (leaves.empty()) {
+        vector<uint8_t> zero_buf{0};
+        root_hash = Hasher::hash(zero_buf);
+        return;
     }
 
-    root_hash = Hasher::hash(buf);
+    vector<uint8_t> buffer;
+
+    while (leaves.size() > 1) {
+        // Duplicate last if odd number
+        if (leaves.size() % 2 != 0) {
+            leaves.push_back(leaves.back());
+        }
+
+        vector<array<uint8_t,16>> leaves_next;
+
+        // Hash each pair in level
+        for (size_t i = 0; i < leaves.size(); i += 2) {
+            buffer.clear();
+            buffer.insert(buffer.end(), leaves[i].begin(), leaves[i].end());
+            buffer.insert(buffer.end(), leaves[i + 1].begin(), leaves[i + 1].end());
+
+            leaves_next.push_back(Hasher::hash(buffer));
+        }
+
+        leaves = std::move(leaves_next);
+    }
+
+    root_hash = leaves[0];
 }
 
 
