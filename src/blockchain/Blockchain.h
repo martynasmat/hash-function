@@ -1,12 +1,14 @@
 #pragma once
 
 #include "../block/Block.h"
+#include "../user/User.h"
 #include <utility>
 #include <vector>
 #include <array>
 #include <cstdint>
 #include <string>
 #include <iostream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -34,6 +36,7 @@ private:
     string difficulty;
     size_t block_count;
     vector<Transaction> mempool;
+    unordered_map<string, int64_t> balances;
 
 public:
     explicit Blockchain(string  diff)
@@ -55,6 +58,7 @@ public:
 
     void mineNextBlock();
     const Block* getBlockByIndex(uint64_t index) const;
+    void setBalances(const vector<User>& users);
 
 private:
     vector<Transaction> getRandomTxs(int64_t count) {

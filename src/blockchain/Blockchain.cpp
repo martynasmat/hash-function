@@ -1,4 +1,8 @@
+#pragma once
+
 #include "Blockchain.h"
+#include <random>
+#include "../user/User.h"
 
 using namespace std;
 
@@ -77,5 +81,14 @@ void Blockchain::printChain() const {
 
         cur = cur->prev_hp.prev_block_ptr;
         index++;
+    }
+}
+
+void Blockchain::setBalances(const vector<User>& users) {
+    balances.clear();
+    balances.reserve(users.size());
+
+    for (const auto& usr : users) {
+        balances[usr.public_key] = usr.balance;
     }
 }
